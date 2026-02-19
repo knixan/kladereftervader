@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "MAMMAS VÄDERTIPS",
-  description: "En rolig väderapp för barn skapad i Next.js",
+  title: "Kläder Efter Väder",
+  description: "En app som tipsar om hur man ska klä sig efter vädret idag, baserat på aktuella väderdata och personliga preferenser.",
 };
 
 export default function RootLayout({
