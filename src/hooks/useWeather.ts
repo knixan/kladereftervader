@@ -11,138 +11,149 @@ const getWeatherTip = (
   temperature: number,
   windSpeed: number
 ): WeatherTip => {
-  // Uppdaterade tips för barn med emojis
+
+  // --- STORM ---
   if (windSpeed >= 24)
     return {
-      text: "Mamma säger: STORM! Stanna helst inne! ⛈️",
-      emoji: "⛈️",
+      text: "⛔ STANNA INNE! Det stormar ute. Det är farligt. 🌪️",
+      emoji: "🌪️",
     };
-  if (weatherId >= 600 && weatherId <= 602)
+
+  // --- ÅSKA ---
+  if (weatherId >= 200 && weatherId <= 232)
     return {
-      text: "Mamma säger: Snö på gång! Klä dig varmt, mössa och vantar! ❄️",
+      text: "⚡ ÅSKA! Gå INTE ut om du kan. Om du måste gå ut: Regnkläder 🧥 och gummistövlar 🥾. INGET paraply. BADA INTE. Blixten är farlig!",
+      emoji: "⚡",
+    };
+
+  // --- SNÖ ---
+  if (weatherId >= 600 && weatherId <= 602) {
+    if (temperature <= -20)
+      return {
+        text: "🥶 MYCKET KALLT och snö! Ta på dig: Tjocka underställ 👕 + ylletröja 🧥 + vinterjacka 🧥 + ylle- eller fleecebuksa 👖 + tjocka yllestrumpor 🧦 + vinterstövlar 🥾 + lång mössa 🧢 + tjocka vantar 🧤 + halsduk 🧣. Täck näsa och kinder!",
+        emoji: "🥶",
+      };
+    if (temperature <= -10)
+      return {
+        text: "🥶 Kallt och snö! Ta på dig: Underställ 👕 + vinterjacka 🧥 + fleecebuksa 👖 + tjocka strumpor 🧦 + vinterstövlar 🥾 + mössa 🧢 + vantar 🧤 + halsduk 🧣.",
+        emoji: "🥶",
+      };
+    return {
+      text: "❄️ Snö ute! Ta på dig: Vinterjacka 🧥 + varma byxor 👖 + tjocka strumpor 🧦 + vinterstövlar 🥾 + mössa 🧢 + vantar 🧤.",
       emoji: "❄️",
     };
+  }
+
+  // --- SNÖBLANDAT REGN / KALL SLASK ---
   if (weatherId >= 611 && weatherId <= 613)
     return {
-      text: "Mamma säger: Snöblandat regn! Fodrade regnkläder, eller regnkläder och varma kläder under. 🌨️",
+      text: "🌨️ Blött och kallt! Ta på dig: Underställ 👕 + vattentät regnjacka 🧥 + regnbyxor 👖 + gummistövlar 🥾 + mössa 🧢 + vantar 🧤.",
       emoji: "🌨️",
     };
-  if (weatherId >= 200 && weatherId <= 201)
+
+  // --- REGN / DUGGREGN / DUSCHREGN ---
+  if (
+    (weatherId >= 300 && weatherId <= 321) ||
+    (weatherId >= 500 && weatherId <= 531)
+  ) {
+    if (weatherId >= 502 && weatherId <= 531)
+      return {
+        text: "🌧️ Kraftigt regn! Ta på dig: Regnjacka 🧥 + regnbyxor 👖 + gummistövlar 🥾. Du blir blöt om du inte har allt på dig!",
+        emoji: "🌧️",
+      };
     return {
-      text: "Mamma säger: Regnkläder och Stövlar på! OBS! INGET PARAPLY och BADA INTE - Du kan bli träffad av blixten! ⚡",
-      emoji: "⚡",
-    };
-  if (weatherId === 202)
-    return {
-      text: "Mamma säger: Du blir nog blöt hur du än gör! Regnkläder och Stövlar på! OBS! INGET PARAPLY och BADA INTE - Du kan bli träffad av blixten! ⚡",
-      emoji: "⚡",
-    };
-  if (weatherId === 210)
-    return {
-      text: "Mamma säger: Regnkläderna behövs inte det ska bara åska utan regn, men ta med en regnjacka i fall att. OBS! INGET PARAPLY och BADA INTE - Du kan bli träffad av blixten! ⚡",
-      emoji: "⚡",
-    };
-  if (weatherId >= 211 && weatherId <= 232)
-    return {
-      text: "Mamma säger: Åska och kanske regn. Se upp för blixten och ta regnkläder! OBS! INGET PARAPLY och BADA INTE - Du kan bli träffad av blixten! ⚡",
-      emoji: "⚡",
-    };
-  if (weatherId >= 300 && weatherId <= 321)
-    return {
-      text: "Mamma säger: Lätt duggregn, ta med ett paraply eller en lätt regnjacka. ☔",
-      emoji: "☔",
-    };
-  if (weatherId === 500)
-    return {
-      text: "Mamma säger: Lätt regn, ta med paraply eller regnkläder. 🌧️",
+      text: "🌧️ Det regnar! Ta på dig: Regnjacka 🧥 + gummistövlar 🥾. Ta med ett paraply ☂️ om du vill.",
       emoji: "🌧️",
     };
-  if (weatherId === 501)
-    return {
-      text: "Mamma säger: Måttligt regn. Ta med ett paraply eller regnkläder. Ta på dig gummistövlar! 🌧️",
-      emoji: "🌧️",
-    };
-  if (weatherId >= 502 && weatherId <= 504)
-    return {
-      text: "Mamma säger: Kraftigt regn! Regnkläder och stövlar är ett måste. Det blir blött! 🌧️",
-      emoji: "🌧️",
-    };
-  if (weatherId >= 520 && weatherId <= 531)
-    return {
-      text: "Mamma säger: Duschregn! Du kommer bli blöt hur du än klär dig, men ta på dig regnkläder och gummistövlar. 🌧️",
-      emoji: "🌧️",
-    };
+  }
+
+  // --- DIMMA ---
   if (weatherId >= 701 && weatherId <= 781)
     return {
-      text: "Mamma säger: Dimma eller dis, kör försiktigt och var uppmärksam på sikten. 🌫️",
+      text: "🌫️ Det är dimmigt. Klä dig efter temperaturen. Gå nära vuxna när du är ute, det är svårt att se!",
       emoji: "🌫️",
     };
-  if (weatherId === 800) {
-    if (temperature >= 5 && temperature <= 8)
-      return {
-        text: "Mamma säger: Ta på dig en fodrad jacka. 😎",
-        emoji: "😎",
-      };
-    if (temperature > 7 && temperature <= 12)
-      return {
-        text: "Mamma säger: Vår/Höst jackan på! Eller ta en kofta eller luvtröja. 😊",
-        emoji: "😊",
-      };
-    if (temperature > 12 && temperature <= 15)
-      return {
-        text: "Mamma säger: Ta på en jacka, kofta eller en hoodie. 😊",
-        emoji: "😊",
-      };
-    if (temperature > 15 && temperature <= 19)
-      return {
-        text: "Mamma säger: Kan vara bra att ha med en kofta eller en hoodie, även om du inte behöver ha den på hela tiden. 😊",
-        emoji: "😊",
-      };
-    if (temperature > 19 && temperature <= 24)
-      return {
-        text: "Mamma säger: Blir ganska varmt idag, ta på en keps eller solhatt. ☀️",
-        emoji: "☀️",
-      };
-    if (temperature > 24 && temperature <= 33)
-      return {
-        text: "Mamma säger: OJ OJ!!! Nu blir det jättevarmt! Ta på dig solhatt eller keps! Smörj med solkräm! GLÖM INTE TA MED VATTEN! Du kommer att bli törstig. ☀️",
-        emoji: "☀️",
-      };
-  }
-  if (weatherId >= 801 && weatherId <= 804) {
-    if (temperature < 5)
-      return {
-        text: "Mamma säger: Molnigt och kallt. Klä dig varmt! 🌥️",
-        emoji: "🌥️",
-      };
-    if (temperature > 4 && temperature <= 10)
-      return {
-        text: "Mamma säger: Molnigt och lite kyligt, en jacka behövs. 🌥️",
-        emoji: "🌥️",
-      };
-    if (temperature > 10 && temperature <= 15)
-      return {
-        text: "Mamma säger: Molnigt men milt, men en tjocktröja räcker nog. ☁️",
-        emoji: "☁️",
-      };
-    if (temperature > 15 && temperature <= 20)
-      return {
-        text: "Mamma säger: Molnigt men ganska varmt. En tjocktröja eller sommarjacka kan vara bra om det blåser. ☁️",
-        emoji: "☁️",
-      };
-    if (temperature > 20)
-      return {
-        text: "Mamma säger: Molnigt men varmt. Korta ärmar går bra. ☁️",
-        emoji: "☁️",
-      };
-  }
+
+  // --- KLART ELLER MOLNIGT: TEMPERATURBASERADE RÅD ---
+
+  // Extremt kallt: -40 till -25
+  if (temperature <= -25)
+    return {
+      text: "🥶🥶 EXTREMT KALLT! Stanna helst inne. Om du måste gå ut: Tjocka underställ (byxa + tröja) 👕 + ylletröja 🧶 + tjock vinterjacka 🧥 + tjocka yllebyxor 👖 + två par strumpor 🧦 + varma vinterstövlar 🥾 + lång mössa som täcker öronen 🧢 + tjocka vantar (två par om du har) 🧤 + halsduk som täcker näsa och mun 🧣. Täck ALL hud!",
+      emoji: "🥶",
+    };
+
+  // Mycket kallt: -25 till -15
+  if (temperature <= -15)
+    return {
+      text: "🥶 MYCKET KALLT! Ta på dig: Underställ (byxa + tröja) 👕 + tjock vinterjacka 🧥 + varma byxor 👖 + tjocka strumpor 🧦 + vinterstövlar 🥾 + mössa som täcker öronen 🧢 + tjocka vantar 🧤 + halsduk 🧣.",
+      emoji: "🥶",
+    };
+
+  // Kallt: -15 till -5
+  if (temperature <= -5)
+    return {
+      text: "🧊 Kallt ute! Ta på dig: Underställ 👕 + vinterjacka 🧥 + varma byxor 👖 + tjocka strumpor 🧦 + vinterstövlar 🥾 + mössa 🧢 + vantar 🧤.",
+      emoji: "🧊",
+    };
+
+  // Kyligt: -5 till 0
+  if (temperature <= 0)
+    return {
+      text: "🌡️ Nära nollan. Ta på dig: Mellanjacka eller vinterjacka 🧥 + tjocka byxor 👖 + strumpor 🧦 + kängor eller stövlar 🥾 + mössa 🧢 + vantar 🧤.",
+      emoji: "🌡️",
+    };
+
+  // Lite kallt: 0 till 5
+  if (temperature <= 5)
+    return {
+      text: "🍂 Lite kallt! Ta på dig: Tjock jacka 🧥 + vanliga byxor 👖 + strumpor 🧦 + skor eller stövlar 👟 + mössa 🧢 + vantar 🧤.",
+      emoji: "🍂",
+    };
+
+  // Svalt: 5 till 10
+  if (temperature <= 10)
+    return {
+      text: "🌤️ Svalt ute. Ta på dig: Jacka 🧥 + vanliga byxor 👖 + strumpor 🧦 + skor 👟. En tunn mössa eller luva kan vara skönt 🧢.",
+      emoji: "🌤️",
+    };
+
+  // Milt: 10 till 15
+  if (temperature <= 15)
+    return {
+      text: "😊 Lite svalt. Ta på dig: En tunn jacka eller tjocktröja 🧥 + vanliga byxor 👖 + skor 👟.",
+      emoji: "😊",
+    };
+
+  // Lagom varmt: 15 till 20
+  if (temperature <= 20)
+    return {
+      text: "😊 Lagom varmt! Ta på dig: En tröja 👕 + vanliga byxor 👖 + skor 👟. Ta med en tunn jacka 🧥 om du känner dig kall.",
+      emoji: "😊",
+    };
+
+  // Varmt: 20 till 25
+  if (temperature <= 25)
+    return {
+      text: "☀️ Varmt ute! Ta på dig: T-shirt 👕 + shorts eller tunna byxor 🩳 + sandaler eller skor 👟 + keps eller solhatt 🧢. Kom ihåg att dricka vatten! 💧",
+      emoji: "☀️",
+    };
+
+  // Mycket varmt: 25 till 30
+  if (temperature <= 30)
+    return {
+      text: "🌞 VARMT! Ta på dig: T-shirt 👕 + shorts 🩳 + sandaler 👡 + solhatt 🧢. Smörj in dig med solkräm 🧴. Drick MYCKET vatten! 💧",
+      emoji: "🌞",
+    };
+
+  // Extremt varmt: över 30
   return {
-    text: "Mamma kan inte rekommendera något just nu. 🤷",
-    emoji: "🤷",
+    text: "🔥 JÄTTEVARMT! Ta på dig: Tunnaste t-shirt 👕 + shorts 🩳 + sandaler 👡 + solhatt 🧢. Smörj in dig med solkräm 🧴. Drick vatten HELA TIDEN 💧. Sök skugga och var inte ute i solen för länge!",
+    emoji: "🔥",
   };
 };
 
-const useWeather = () => {
+export default function useWeather() {
   const [city, setCity] = useState<string>("");
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [forecastData, setForecastData] = useState<ForecastData | null>(null);
@@ -222,6 +233,4 @@ const useWeather = () => {
     getFilteredForecast,
     API_ICON_URL,
   };
-};
-
-export default useWeather;
+}

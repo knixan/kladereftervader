@@ -1,4 +1,3 @@
-import React from "react";
 import { WeatherData, WeatherTip } from "@/types/weather.d";
 import Image from "next/image";
 
@@ -8,47 +7,46 @@ interface WeatherCardProps {
   iconUrl: string;
 }
 
-const WeatherCard: React.FC<WeatherCardProps> = ({
-  weatherData,
-  weatherTip,
-  iconUrl,
-}) => {
+export default function WeatherCard({ weatherData, weatherTip, iconUrl }: WeatherCardProps) {
   if (!weatherData) return null;
 
   const { name, main, weather, wind } = weatherData;
 
   return (
-    <div className="weather-card bg-white/20 p-8 rounded-3xl shadow-xl text-center w-full max-w-2xl backdrop-blur-md animate-fade-in">
-      <h2 className="text-3xl font-extrabold text-white mb-2">{name}</h2>
-      <div className="flex flex-col items-center justify-center my-4">
-        <Image
-          src={iconUrl}
-          alt={weather[0].description}
-          width={128} // w-32 motsvarar 128px i standard Tailwind-konfiguration
-          height={128} // h-32 motsvarar 128px
-          className="weather-icon my-3 mx-auto drop-shadow-lg"
-        />
-        <p className="temperature text-6xl font-bold text-white drop-shadow-md">
-          {Math.round(main.temp)}°C
-        </p>
-        <p className="feels-like text-lg text-white/80">
-          Känns som: {Math.round(main.feels_like)}°C
-        </p>
-      </div>
-      <p className="description text-xl font-medium mb-2">
-        {weather[0].description.charAt(0).toUpperCase() +
-          weather[0].description.slice(1)}
+    <div className="w-full rounded-[32px] p-6 sm:p-8 md:p-10 text-center text-white shadow-xl bg-gradient-to-br from-sky-500 to-indigo-600">
+      <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-4 sm:mb-6 tracking-tight">
+        {name}
+      </h2>
+
+      <Image
+        src={iconUrl}
+        alt={weather[0].description}
+        width={150}
+        height={150}
+        className="mx-auto"
+      />
+
+      <p className="text-5xl sm:text-6xl md:text-7xl font-black mt-3 sm:mt-4">
+        {Math.round(main.temp)}°
       </p>
-      <div className="flex justify-center gap-6 text-lg text-white/90 font-medium">
-        <p>Luftfuktighet: {main.humidity}%</p>
-        <p>Vindhastighet: {wind.speed} m/s</p>
-      </div>
-      <p className="weather-tip mt-6 p-4 text-2xl font-black rounded-3xl bg-purple-700 text-white animate-pulse-slow drop-shadow-lg">
-        <span className="mr-2 text-3xl">{weatherTip.emoji}</span>
-        {weatherTip.text}
+
+      <p className="text-base sm:text-lg mt-2 opacity-95">
+        Känns som {Math.round(main.feels_like)}°
       </p>
+
+      <div className="mt-5 sm:mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-base sm:text-lg font-bold">
+        <div className="bg-white/95 text-slate-800 rounded-2xl p-4">
+          💧 {main.humidity}% fukt
+        </div>
+
+        <div className="bg-white/95 text-slate-800 rounded-2xl p-4">
+          💨 {wind.speed} m/s
+        </div>
+      </div>
+
+      <div className="mt-6 sm:mt-8 bg-emerald-200 text-emerald-950 p-5 sm:p-6 rounded-3xl text-lg sm:text-xl font-black leading-snug">
+        {weatherTip.emoji} {weatherTip.text}
+      </div>
     </div>
   );
-};
-
-export default WeatherCard;
+}

@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "MAMMAS VÄDERTIPS",
@@ -16,7 +13,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="sv">
-      <body className="bg-gradient-to-br from-pink-250 via-purple-350 to-yellow-200 text-gray-800 min-h-screen flex flex-col justify-center items-center">
+      <body className="min-h-screen bg-gradient-to-br from-sky-100 via-amber-50 to-pink-100 text-slate-900 flex flex-col">
         {children}
       </body>
     </html>

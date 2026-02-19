@@ -1,16 +1,13 @@
-import React from "react";
-
-const Header: React.FC = () => {
+export default function Header() {
   return (
-    <header className="text-center mb-8 drop-shadow-2xl">
-      <h1 className="mb-4 text-4xl p-6 rounded-3xl bg-purple-700 text-white font-black leading-tight sm:text-5xl lg:text-6xl animate-bounce-slow">
-        MAMMAS VÄDERTIPS
+    <header className="text-center w-full">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-slate-800 mb-3 sm:mb-4 tracking-tight">
+        🌤 Kläder efter Väder
       </h1>
-      <p className="text-xl font-bold p-4 rounded-2xl text-white bg-pink-500 leading-snug lg:text-xxl">
-        Skriv in staden du är i och se mamma säger... 👩‍👧‍👦
+
+      <p className="text-base sm:text-lg md:text-xl font-bold bg-sky-500 text-white py-3 sm:py-4 px-5 sm:px-6 rounded-3xl leading-snug shadow-sm">
+        Skriv din stad och se vad mamma tycker 💛
       </p>
     </header>
   );
-};
-
-export default Header;
+}

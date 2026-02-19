@@ -12,39 +12,44 @@ export default function Home() {
     city,
     setCity,
     weatherData,
-    forecastData,
     loading,
     error,
     fetchWeatherData,
     getWeatherTip,
+    getFilteredForecast,
     API_ICON_URL,
   } = useWeather();
 
-  const handleSearch = () => {
+  const forecastItems = getFilteredForecast();
+
+  function handleSearch() {
     fetchWeatherData(city);
-  };
+  }
 
   return (
-    <div className="flex flex-col items-center justify-center p-4 min-h-screen bg-gradient-to-br from-purple-800 via-indigo-900 to-blue-900 text-white">
-      <Header />
-      <main className="w-full max-w-3xl flex-grow flex flex-col items-center">
-        <div className="weather-card bg-indigo-900/40 p-8 rounded-3xl shadow-2xl text-center w-full backdrop-blur-lg border border-white/10">
-          <SearchInput city={city} setCity={setCity} onSearch={handleSearch} />
+    <div className="w-full min-h-screen px-4 sm:px-6 lg:px-10 py-6 sm:py-10">
+      <div className="mx-auto w-full max-w-6xl flex flex-col gap-6 sm:gap-8">
+        <Header />
 
-          {loading && (
-            <div className="text-xl mt-6 p-4 rounded-xl bg-white/20 text-white animate-pulse">
-              Laddar väder...
-            </div>
-          )}
+        <main className="w-full rounded-[32px] bg-white/75 backdrop-blur-md border border-white/60 shadow-[0_12px_40px_rgba(15,23,42,0.12)] p-5 sm:p-8">
+          <section className="flex flex-col gap-4">
+            <SearchInput city={city} setCity={setCity} onSearch={handleSearch} />
 
-          {error && (
-            <div className="error-message bg-red-600/80 p-4 rounded-xl mt-5 animate-fade-in-down">
-              <p className="text-lg font-bold">⚠️ {error}</p>
-            </div>
-          )}
+            {loading && (
+              <div className="text-base sm:text-lg p-4 rounded-2xl bg-sky-600 text-white font-semibold animate-pulse">
+                Laddar väder...
+              </div>
+            )}
+
+            {error && (
+              <div className="bg-rose-600 text-white p-4 rounded-2xl">
+                <p className="text-sm sm:text-base font-bold">⚠️ {error}</p>
+              </div>
+            )}
+          </section>
 
           {!loading && weatherData && (
-            <>
+            <section className="mt-6 grid gap-6 lg:grid-cols-[1.35fr_0.65fr] lg:items-start">
               <WeatherCard
                 weatherData={weatherData}
                 weatherTip={getWeatherTip(
@@ -54,12 +59,16 @@ export default function Home() {
                 )}
                 iconUrl={`${API_ICON_URL}${weatherData.weather[0].icon}@2x.png`}
               />
-              <div className="mt-8">{forecastData && <Forecast />}</div>
-            </>
+
+              {forecastItems && forecastItems.length > 0 && (
+                <Forecast items={forecastItems} iconUrlBase={API_ICON_URL} />
+              )}
+            </section>
           )}
-        </div>
-      </main>
-      <Footer />
+        </main>
+
+        <Footer />
+      </div>
     </div>
   );
 }
