@@ -6,7 +6,7 @@ export default function Header() {
       </h1>
 
       <p className="text-base sm:text-lg md:text-xl font-bold bg-sky-500 text-white py-3 sm:py-4 px-5 sm:px-6 rounded-3xl leading-snug shadow-sm">
-        Skriv in orten och se vilka kläder du ska ta på dig 💛
+        Tips på hur du ska klä dig efter vädret idag 💛
       </p>
     </header>
   );

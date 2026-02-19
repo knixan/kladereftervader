@@ -44,7 +44,7 @@ export default function WeatherCard({ weatherData, weatherTip, iconUrl }: Weathe
         </div>
       </div>
 
-      <div className="mt-6 sm:mt-8 bg-emerald-200 text-emerald-950 p-5 sm:p-6 rounded-3xl text-lg sm:text-xl font-black leading-snug">
+      <div className="mt-6 sm:mt-8 bg-white text-emerald-950 p-5 sm:p-6 rounded-3xl text-lg sm:text-xl font-black leading-snug">
         {weatherTip.emoji} {weatherTip.text}
       </div>
     </div>
