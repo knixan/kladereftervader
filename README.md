@@ -1,9 +1,9 @@
 [![Next.js](https://img.shields.io/badge/Next.js-13-blue.svg)](https://nextjs.org)
 
-# MammasVäder — En omtänksam väderapp
+# Kläder efter Väder — En omtänksam väderapp som ger tips på vad man ska ta på sig för kläder. 
 
 En liten, trevlig väderapplikation byggd med Next.js och TypeScript. Appen visar aktuell väderinformation och ger enkla, praktiska kläd- och aktivitetsråd i en varm, lättsam ton — perfekt för familjer och barn.
-
+Webbappen riktar sig fämst till barn och ungdommar som har funktionsnedsättning som exempel IF, Autism och andra personer som har svårt att välja kläder efter väder. 
 ![](public/kladereftervader.png)
 
 ## Funktioner
