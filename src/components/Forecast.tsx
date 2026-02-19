@@ -18,13 +18,13 @@ export default function Forecast({ items, iconUrlBase }: ForecastProps) {
       </h3>
 
       <div className="grid grid-cols-2 gap-4">
-        {items.map((item, index) => (
+        {items.map((item) => (
           <div
             key={item.dt}
             className="bg-white rounded-3xl p-4 text-center shadow-sm border border-slate-100"
           >
             <p className="font-bold text-sm sm:text-base text-slate-700 mb-1">
-              Om {3 * (index + 1)}h
+              Kl {new Date(item.dt * 1000).toLocaleTimeString("sv-SE", { hour: "2-digit", minute: "2-digit" })}
             </p>
 
             <Image
