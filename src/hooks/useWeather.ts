@@ -203,6 +203,74 @@ export default function useWeather() {
     }
   }, []);
 
+  const getWeatherByLocation = useCallback(
+    async (lat?: number, lon?: number) => {
+      if (!API_KEY) {
+        setError("API-nyckeln saknas. Kontrollera din .env-fil.");
+        return;
+      }
+
+      const hasCoords = typeof lat === "number" && typeof lon === "number";
+      const getCoords = () =>
+        new Promise<GeolocationPosition>((resolve, reject) => {
+          if (typeof navigator === "undefined" || !navigator.geolocation) {
+            reject(new Error("Geolocation stöds inte i din webbläsare."));
+            return;
+          }
+          navigator.geolocation.getCurrentPosition(resolve, reject, {
+            enableHighAccuracy: true,
+            timeout: 10000,
+          });
+        });
+
+      setLoading(true);
+      setError(null);
+
+      try {
+        let latitude = lat;
+        let longitude = lon;
+
+        if (!hasCoords) {
+          const position = await getCoords();
+          latitude = position.coords.latitude;
+          longitude = position.coords.longitude;
+        }
+
+        const currentWeatherResponse = await fetch(
+          `${API_URL}/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric&lang=sv`
+        );
+        if (!currentWeatherResponse.ok) {
+          throw new Error("Kunde inte hämta väder för din plats.");
+        }
+        const currentData: WeatherData = await currentWeatherResponse.json();
+
+        const forecastResponse = await fetch(
+          `${API_URL}/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric&lang=sv`
+        );
+        if (!forecastResponse.ok) {
+          throw new Error("Kunde inte hämta prognosdata för din plats.");
+        }
+        const forecastData: ForecastData = await forecastResponse.json();
+
+        setWeatherData(currentData);
+        setForecastData(forecastData);
+        setCity(currentData.name || "");
+        setCookie("last_city", currentData.name || "", { maxAge: 60 * 60 * 24 * 30 });
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("Ett okänt fel inträffade.");
+        }
+        setWeatherData(null);
+        setForecastData(null);
+      } finally {
+        setLoading(false);
+      }
+    },
+    []
+  );
+
   const getFilteredForecast = useCallback(() => {
     if (!forecastData) {
       return null;
@@ -229,6 +297,7 @@ export default function useWeather() {
     loading,
     error,
     fetchWeatherData,
+    getWeatherByLocation,
     getWeatherTip,
     getFilteredForecast,
     API_ICON_URL,
