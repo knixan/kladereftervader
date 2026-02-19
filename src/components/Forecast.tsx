@@ -12,8 +12,8 @@ export default function Forecast({ items, iconUrlBase }: ForecastProps) {
   }
 
   return (
-    <aside className="w-full rounded-[32px] bg-sky-50 border border-sky-100 p-5 sm:p-6 shadow-sm">
-      <h3 className="text-xl sm:text-2xl font-black text-slate-800 text-center mb-4 sm:mb-5">
+    <aside className="w-full rounded-[32px] bg-[#eaf6ff] border border-[#d5edff] p-5 sm:p-6 shadow-sm">
+      <h3 className="text-xl sm:text-2xl font-black text-[#1e293b] text-center mb-4 sm:mb-5">
         Prognos
       </h3>
 
@@ -21,9 +21,9 @@ export default function Forecast({ items, iconUrlBase }: ForecastProps) {
         {items.map((item) => (
           <div
             key={item.dt}
-            className="bg-white rounded-3xl p-4 text-center shadow-sm border border-slate-100"
+            className="bg-[#ffffff] rounded-3xl p-4 text-center shadow-sm border border-[#f1f5f9]"
           >
-            <p className="font-bold text-sm sm:text-base text-slate-700 mb-1">
+            <p className="font-bold text-sm sm:text-base text-[#334155] mb-1">
               Kl {new Date(item.dt * 1000).toLocaleTimeString("sv-SE", { hour: "2-digit", minute: "2-digit" })}
             </p>
 
@@ -35,7 +35,7 @@ export default function Forecast({ items, iconUrlBase }: ForecastProps) {
               className="mx-auto"
             />
 
-            <p className="text-2xl sm:text-3xl font-black text-slate-800 mt-1">
+            <p className="text-2xl sm:text-3xl font-black text-[#1e293b] mt-1">
               {Math.round(item.main.temp)}°
             </p>
           </div>

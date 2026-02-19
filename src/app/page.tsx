@@ -36,13 +36,13 @@ export default function Home() {
             <SearchInput city={city} setCity={setCity} onSearch={handleSearch} />
 
             {loading && (
-              <div className="text-base sm:text-lg p-4 rounded-2xl bg-sky-600 text-white font-semibold animate-pulse">
+              <div className="text-base sm:text-lg p-4 rounded-2xl bg-[#4279b8] text-[#ffffff] font-semibold animate-pulse">
                 Laddar väder...
               </div>
             )}
 
             {error && (
-              <div className="bg-rose-600 text-white p-4 rounded-2xl">
+              <div className="bg-[#cc1622] text-[#ffffff] p-4 rounded-2xl">
                 <p className="text-sm sm:text-base font-bold">⚠️ {error}</p>
               </div>
             )}
