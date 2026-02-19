@@ -30,16 +30,16 @@ const getWeatherTip = (
   if (weatherId >= 600 && weatherId <= 602) {
     if (temperature <= -20)
       return {
-        text: "🥶 MYCKET KALLT och snö! Ta på dig: Tjocka underställ 👕 + ylletröja 🧥 + vinterjacka 🧥 + ylle- eller fleecebuksa 👖 + tjocka yllestrumpor 🧦 + vinterstövlar 🥾 + lång mössa 🧢 + tjocka vantar 🧤 + halsduk 🧣. Täck näsa och kinder!",
+        text: "🥶 MYCKET KALLT och snö! Ta på dig: Tjocka underställ 👕 + ylletröja 🧥 + vinterjacka 🧥 + ylle- eller fleecebuksa 👖 + tjocka yllestrumpor 🧦 + vinterstövlar 🥾 + lång mössa  + tjocka vantar 🧤 + halsduk 🧣. Täck näsa och kinder!",
         emoji: "🥶",
       };
     if (temperature <= -10)
       return {
-        text: "🥶 Kallt och snö! Ta på dig: Underställ 👕 + vinterjacka 🧥 + fleecebuksa 👖 + tjocka strumpor 🧦 + vinterstövlar 🥾 + mössa 🧢 + vantar 🧤 + halsduk 🧣.",
+        text: "🥶 Kallt och snö! Ta på dig: Underställ 👕 + vinterjacka 🧥 + fleecebuksa 👖 + tjocka strumpor 🧦 + vinterstövlar 🥾 + mössa  + vantar 🧤 + halsduk 🧣.",
         emoji: "🥶",
       };
     return {
-      text: "❄️ Snö ute! Ta på dig: Vinterjacka 🧥 + varma byxor 👖 + tjocka strumpor 🧦 + vinterstövlar 🥾 + mössa 🧢 + vantar 🧤.",
+      text: "❄️ Snö ute! Ta på dig: Vinterjacka 🧥 + varma byxor 👖 + tjocka strumpor 🧦 + vinterstövlar 🥾 + mössa  + vantar 🧤.",
       emoji: "❄️",
     };
   }
@@ -93,21 +93,21 @@ const getWeatherTip = (
   // Kallt: -15 till -5
   if (temperature <= -5)
     return {
-      text: "🧊 Kallt ute! Ta på dig: Underställ 👕 + vinterjacka 🧥 + varma byxor 👖 + tjocka strumpor 🧦 + vinterstövlar 🥾 + mössa 🧢 + vantar 🧤.",
+      text: "🧊 Kallt ute! Ta på dig: Underställ 👕 + vinterjacka 🧥 + varma byxor 👖 + tjocka strumpor 🧦 + vinterstövlar 🥾 + mössa  + vantar 🧤.",
       emoji: "🧊",
     };
 
   // Kyligt: -5 till 0
   if (temperature <= 0)
     return {
-      text: "🌡️ Nära nollan. Ta på dig: Mellanjacka eller vinterjacka 🧥 + tjocka byxor 👖 + strumpor 🧦 + kängor eller stövlar 🥾 + mössa 🧢 + vantar 🧤.",
+      text: "🌡️ Nära nollan. Ta på dig: Mellanjacka eller vinterjacka 🧥 + tjocka byxor 👖 + strumpor 🧦 + kängor eller stövlar 🥾 + mössa  + vantar 🧤.",
       emoji: "🌡️",
     };
 
   // Lite kallt: 0 till 5
   if (temperature <= 5)
     return {
-      text: "🍂 Lite kallt! Ta på dig: Tjock jacka 🧥 + vanliga byxor 👖 + strumpor 🧦 + skor eller stövlar 👟 + mössa 🧢 + vantar 🧤.",
+      text: "🍂 Lite kallt! Ta på dig: Tjock jacka 🧥 + vanliga byxor 👖 + strumpor 🧦 + skor eller stövlar 👟 + mössa  + vantar 🧤.",
       emoji: "🍂",
     };
 
