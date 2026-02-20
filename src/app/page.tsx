@@ -64,13 +64,13 @@ export default function Home() {
                     iconUrl={`${API_ICON_URL}${weatherData.weather[0].icon}@2x.png`}
                   />
 
-                  <div className="w-full h-full rounded-[32px] p-6 sm:p-8 bg-[#ffffff] shadow-xl flex flex-col items-center justify-center text-[#064e3b]">
+                  <div className="w-full h-full rounded-[32px] p-5 sm:p-7 bg-[#ffffff] shadow-xl flex flex-col items-center justify-center text-[#064e3b]">
                     <Image
                       src={weatherTip.imagePath}
                       alt="Klädrekommendation"
-                      width={300}
-                      height={300}
-                      className="mb-4"
+                      width={250}
+                      height={250}
+                      className="mb-3 sm:mb-4"
                     />
                     <p className="text-base sm:text-lg font-black leading-snug text-center">
                       {weatherTip.text}
