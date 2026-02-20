@@ -12,7 +12,7 @@ export default function WeatherCard({ weatherData, iconUrl }: WeatherCardProps) 
   const { name, main, weather, wind } = weatherData;
 
   return (
-    <div className="w-full rounded-[32px] p-6 sm:p-8 md:p-10 text-center text-[#ffffff] shadow-xl bg-gradient-to-br from-[#51b1e8] to-[#827bd4]">
+    <div className="w-full h-full rounded-[32px] p-6 sm:p-8 md:p-10 text-center text-[#ffffff] shadow-xl bg-gradient-to-br from-[#51b1e8] to-[#827bd4] flex flex-col justify-between">
       <h2 className="text-2xl sm:text-3xl md:text-4xl font-black mb-4 sm:mb-6 tracking-tight">
         {name}
       </h2>

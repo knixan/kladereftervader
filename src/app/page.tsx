@@ -58,18 +58,18 @@ export default function Home() {
             
             return (
               <>
-                <section className="mt-6 grid gap-6 lg:grid-cols-[1.35fr_0.65fr] lg:items-start">
+                <section className="mt-6 grid gap-6 lg:grid-cols-[1.35fr_0.65fr] lg:items-stretch">
                   <WeatherCard
                     weatherData={weatherData}
                     iconUrl={`${API_ICON_URL}${weatherData.weather[0].icon}@2x.png`}
                   />
 
-                  <div className="w-full rounded-[32px] p-6 sm:p-8 bg-[#ffffff] shadow-xl flex flex-col items-center justify-center text-[#064e3b]">
+                  <div className="w-full h-full rounded-[32px] p-6 sm:p-8 bg-[#ffffff] shadow-xl flex flex-col items-center justify-center text-[#064e3b]">
                     <Image
                       src={weatherTip.imagePath}
                       alt="Klädrekommendation"
-                      width={200}
-                      height={200}
+                      width={300}
+                      height={300}
                       className="mb-4"
                     />
                     <p className="text-base sm:text-lg font-black leading-snug text-center">
