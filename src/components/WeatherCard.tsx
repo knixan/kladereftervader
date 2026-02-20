@@ -1,13 +1,12 @@
-import { WeatherData, WeatherTip } from "@/types/weather.d";
+import { WeatherData } from "@/types/weather.d";
 import Image from "next/image";
 
 interface WeatherCardProps {
   weatherData: WeatherData;
-  weatherTip: WeatherTip;
   iconUrl: string;
 }
 
-export default function WeatherCard({ weatherData, weatherTip, iconUrl }: WeatherCardProps) {
+export default function WeatherCard({ weatherData, iconUrl }: WeatherCardProps) {
   if (!weatherData) return null;
 
   const { name, main, weather, wind } = weatherData;
@@ -36,16 +35,12 @@ export default function WeatherCard({ weatherData, weatherTip, iconUrl }: Weathe
 
       <div className="mt-5 sm:mt-6 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-base sm:text-lg font-bold">
         <div className="bg-[#ffffff]/95 text-[#1e293b] rounded-2xl p-4">
-          💧 {main.humidity}% fukt
+          {main.humidity}% fukt
         </div>
 
         <div className="bg-[#ffffff]/95 text-[#1e293b] rounded-2xl p-4">
-          💨 {wind.speed} m/s
+          {wind.speed} m/s vind
         </div>
-      </div>
-
-      <div className="mt-6 sm:mt-8 bg-[#ffffff] text-[#064e3b] p-5 sm:p-6 rounded-3xl text-lg sm:text-xl font-black leading-snug">
-        {weatherTip.emoji} {weatherTip.text}
       </div>
     </div>
   );

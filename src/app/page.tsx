@@ -6,6 +6,7 @@ import SearchInput from "@/components/SearchInput";
 import WeatherCard from "@/components/WeatherCard";
 import Forecast from "@/components/Forecast";
 import Footer from "@/components/Footer";
+import Image from "next/image";
 
 export default function Home() {
   const {
@@ -43,28 +44,48 @@ export default function Home() {
 
             {error && (
               <div className="bg-[#cc1622] text-[#ffffff] p-4 rounded-2xl">
-                <p className="text-sm sm:text-base font-bold">⚠️ {error}</p>
+                <p className="text-sm sm:text-base font-bold">{error}</p>
               </div>
             )}
           </section>
 
-          {!loading && weatherData && (
-            <section className="mt-6 grid gap-6 lg:grid-cols-[1.35fr_0.65fr] lg:items-start">
-              <WeatherCard
-                weatherData={weatherData}
-                weatherTip={getWeatherTip(
-                  weatherData.weather[0].id,
-                  weatherData.main.temp,
-                  weatherData.wind.speed
-                )}
-                iconUrl={`${API_ICON_URL}${weatherData.weather[0].icon}@2x.png`}
-              />
+          {!loading && weatherData && (() => {
+            const weatherTip = getWeatherTip(
+              weatherData.weather[0].id,
+              weatherData.main.temp,
+              weatherData.wind.speed
+            );
+            
+            return (
+              <>
+                <section className="mt-6 grid gap-6 lg:grid-cols-[1.35fr_0.65fr] lg:items-start">
+                  <WeatherCard
+                    weatherData={weatherData}
+                    iconUrl={`${API_ICON_URL}${weatherData.weather[0].icon}@2x.png`}
+                  />
 
-              {forecastItems && forecastItems.length > 0 && (
-                <Forecast items={forecastItems} iconUrlBase={API_ICON_URL} />
-              )}
-            </section>
-          )}
+                  <div className="w-full rounded-[32px] p-6 sm:p-8 bg-[#ffffff] shadow-xl flex flex-col items-center justify-center text-[#064e3b]">
+                    <Image
+                      src={weatherTip.imagePath}
+                      alt="Klädrekommendation"
+                      width={200}
+                      height={200}
+                      className="mb-4"
+                    />
+                    <p className="text-base sm:text-lg font-black leading-snug text-center">
+                      {weatherTip.text}
+                    </p>
+                  </div>
+                </section>
+
+                {forecastItems && forecastItems.length > 0 && (
+                  <section className="mt-6">
+                    <Forecast items={forecastItems} iconUrlBase={API_ICON_URL} />
+                  </section>
+                )}
+              </>
+            );
+          })()}
         </main>
 
         <Footer />

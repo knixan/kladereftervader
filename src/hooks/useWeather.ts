@@ -15,40 +15,40 @@ const getWeatherTip = (
   // --- STORM ---
   if (windSpeed >= 24)
     return {
-      text: "⛔ STANNA INNE! Det stormar ute. Det är farligt. 🌪️",
-      emoji: "🌪️",
+      text: "STANNA INNE! Det stormar ute. Det är farligt.",
+      imagePath: "/klader/kladereftervader-regn.png",
     };
 
   // --- ÅSKA ---
   if (weatherId >= 200 && weatherId <= 232)
     return {
-      text: "⚡ ÅSKA! Gå INTE ut om du kan. Om du måste gå ut: Regnkläder 🧥 och gummistövlar 🥾. INGET paraply. BADA INTE. Blixten är farlig!",
-      emoji: "⚡",
+      text: "ÅSKA! Gå INTE ut om du kan. Om du måste gå ut: Regnkläder och gummistövlar. INGET paraply. BADA INTE. Blixten är farlig!",
+      imagePath: "/klader/kladereftervader-regn.png",
     };
 
   // --- SNÖ ---
   if (weatherId >= 600 && weatherId <= 602) {
     if (temperature <= -20)
       return {
-        text: "🥶 MYCKET KALLT och snö! Ta på dig: Tjocka underställ 👕 + ylletröja 🧥 + vinterjacka 🧥 + ylle- eller fleecebuksa 👖 + tjocka yllestrumpor 🧦 + vinterstövlar 🥾 + lång mössa  + tjocka vantar 🧤 + halsduk 🧣. Täck näsa och kinder!",
-        emoji: "🥶",
+        text: "MYCKET KALLT och snö! Ta på dig: Tjocka underställ + ylletröja + vinterjacka + ylle- eller fleecebuksa + tjocka yllestrumpor + vinterstövlar + lång mössa + tjocka vantar + halsduk. Täck näsa och kinder!",
+        imagePath: "/klader/kladereftervader-superkallt.png",
       };
     if (temperature <= -10)
       return {
-        text: "🥶 Kallt och snö! Ta på dig: Underställ 👕 + vinterjacka 🧥 + fleecebuksa 👖 + tjocka strumpor 🧦 + vinterstövlar 🥾 + mössa  + vantar 🧤 + halsduk 🧣.",
-        emoji: "🥶",
+        text: "Kallt och snö! Ta på dig: Underställ + vinterjacka + fleecebuksa + tjocka strumpor + vinterstövlar + mössa + vantar + halsduk.",
+        imagePath: "/klader/kladereftervader-superkallt.png",
       };
     return {
-      text: "❄️ Snö ute! Ta på dig: Vinterjacka 🧥 + varma byxor 👖 + tjocka strumpor 🧦 + vinterstövlar 🥾 + mössa  + vantar 🧤.",
-      emoji: "❄️",
+      text: "Snö ute! Ta på dig: Vinterjacka + varma byxor + tjocka strumpor + vinterstövlar + mössa + vantar.",
+      imagePath: "/klader/kladereftervader-kallt.png",
     };
   }
 
   // --- SNÖBLANDAT REGN / KALL SLASK ---
   if (weatherId >= 611 && weatherId <= 613)
     return {
-      text: "🌨️ Blött och kallt! Ta på dig: Underställ 👕 + vattentät regnjacka 🧥 + regnbyxor 👖 + gummistövlar 🥾 + mössa 🧢 + vantar 🧤.",
-      emoji: "🌨️",
+      text: "Blött och kallt! Ta på dig: Underställ + vattentät regnjacka + regnbyxor + gummistövlar + mössa + vantar.",
+      imagePath: "/klader/kladereftervader-kallt.png",
     };
 
   // --- REGN / DUGGREGN / DUSCHREGN ---
@@ -58,98 +58,123 @@ const getWeatherTip = (
   ) {
     if (weatherId >= 502 && weatherId <= 531)
       return {
-        text: "🌧️ Kraftigt regn! Ta på dig: Regnjacka 🧥 + regnbyxor 👖 + gummistövlar 🥾. Du blir blöt om du inte har allt på dig!",
-        emoji: "🌧️",
+        text: "Kraftigt regn! Ta på dig: Regnjacka + regnbyxor + gummistövlar. Du blir blöt om du inte har allt på dig!",
+        imagePath: "/klader/kladereftervader-regn.png",
       };
     return {
-      text: "🌧️ Det regnar! Ta på dig: Regnjacka 🧥 + gummistövlar 🥾. Ta med ett paraply ☂️ om du vill.",
-      emoji: "🌧️",
+      text: "Det regnar! Ta på dig: Regnjacka + gummistövlar. Ta med ett paraply om du vill.",
+      imagePath: "/klader/kladereftervader-regn.png",
     };
   }
 
   // --- DIMMA ---
-  if (weatherId >= 701 && weatherId <= 781)
+  if (weatherId >= 701 && weatherId <= 781) {
+    // Dimma - använd temperaturbaserad bild
+    if (temperature <= -5)
+      return {
+        text: "Det är dimmigt och kallt. Klä dig varmt. Gå nära vuxna när du är ute, det är svårt att se!",
+        imagePath: "/klader/kladereftervader-superkallt.png",
+      };
+    if (temperature <= 5)
+      return {
+        text: "Det är dimmigt och lite kallt. Klä dig varmt. Gå nära vuxna när du är ute, det är svårt att se!",
+        imagePath: "/klader/kladereftervader-kallt.png",
+      };
+    if (temperature <= 8)
+      return {
+        text: "Det är dimmigt. Klä dig efter temperaturen. Gå nära vuxna när du är ute, det är svårt att se!",
+        imagePath: "/klader/kladereftervader-kyligt.png",
+      };
+    if (temperature <= 12)
+      return {
+        text: "Det är dimmigt. Klä dig efter temperaturen. Gå nära vuxna när du är ute, det är svårt att se!",
+        imagePath: "/klader/kladereftervader-svalt.png",
+      };
+    if (temperature <= 18)
+      return {
+        text: "Det är dimmigt. Klä dig efter temperaturen. Gå nära vuxna när du är ute, det är svårt att se!",
+        imagePath: "/klader/kladereftervader-lagom.png",
+      };
+    if (temperature <= 24)
+      return {
+        text: "Det är dimmigt. Klä dig efter temperaturen. Gå nära vuxna när du är ute, det är svårt att se!",
+        imagePath: "/klader/kladereftervader-varmt.png",
+      };
     return {
-      text: "🌫️ Det är dimmigt. Klä dig efter temperaturen. Gå nära vuxna när du är ute, det är svårt att se!",
-      emoji: "🌫️",
+      text: "Det är dimmigt. Klä dig efter temperaturen. Gå nära vuxna när du är ute, det är svårt att se!",
+      imagePath: "/klader/kladereftervader-supervarmt.png",
     };
+  }
 
   // --- KLART ELLER MOLNIGT: TEMPERATURBASERADE RÅD ---
 
   // Extremt kallt: -40 till -25
   if (temperature <= -25)
     return {
-      text: "🥶🥶 EXTREMT KALLT! Stanna helst inne. Om du måste gå ut: Tjocka underställ (byxa + tröja) 👕 + ylletröja 🧶 + tjock vinterjacka 🧥 + tjocka yllebyxor 👖 + två par strumpor 🧦 + varma vinterstövlar 🥾 + lång mössa som täcker öronen 🧢 + tjocka vantar (två par om du har) 🧤 + halsduk som täcker näsa och mun 🧣. Täck ALL hud!",
-      emoji: "🥶",
+      text: "EXTREMT KALLT! Stanna helst inne. Om du måste gå ut: Tjocka underställ (byxa + tröja) + ylletröja + tjock vinterjacka + tjocka yllebyxor + två par strumpor + varma vinterstövlar + lång mössa som täcker öronen + tjocka vantar (två par om du har) + halsduk som täcker näsa och mun. Täck ALL hud!",
+      imagePath: "/klader/kladereftervader-superkallt.png",
     };
 
   // Mycket kallt: -25 till -15
   if (temperature <= -15)
     return {
-      text: "🥶 MYCKET KALLT! Ta på dig: Underställ (byxa + tröja) 👕 + tjock vinterjacka 🧥 + varma byxor 👖 + tjocka strumpor 🧦 + vinterstövlar 🥾 + mössa som täcker öronen 🧢 + tjocka vantar 🧤 + halsduk 🧣.",
-      emoji: "🥶",
+      text: "MYCKET KALLT! Ta på dig: Underställ (byxa + tröja) + tjock vinterjacka + varma byxor + tjocka strumpor + vinterstövlar + mössa som täcker öronen + tjocka vantar + halsduk.",
+      imagePath: "/klader/kladereftervader-superkallt.png",
     };
 
   // Kallt: -15 till -5
   if (temperature <= -5)
     return {
-      text: "🧊 Kallt ute! Ta på dig: Underställ 👕 + vinterjacka 🧥 + varma byxor 👖 + tjocka strumpor 🧦 + vinterstövlar 🥾 + mössa  + vantar 🧤.",
-      emoji: "🧊",
+      text: "Kallt ute! Ta på dig: Underställ + vinterjacka + varma byxor + tjocka strumpor + vinterstövlar + mössa + vantar.",
+      imagePath: "/klader/kladereftervader-superkallt.png",
     };
 
-  // Kyligt: -5 till 0
-  if (temperature <= 0)
-    return {
-      text: "🌡️ Nära nollan. Ta på dig: Mellanjacka eller vinterjacka 🧥 + tjocka byxor 👖 + strumpor 🧦 + kängor eller stövlar 🥾 + mössa  + vantar 🧤.",
-      emoji: "🌡️",
-    };
-
-  // Lite kallt: 0 till 5
+  // Kyligt: -4 till +5
   if (temperature <= 5)
     return {
-      text: "🍂 Lite kallt! Ta på dig: Tjock jacka 🧥 + vanliga byxor 👖 + strumpor 🧦 + skor eller stövlar 👟 + mössa  + vantar 🧤.",
-      emoji: "🍂",
+      text: "Lite kallt! Ta på dig: Tjock jacka + vanliga byxor + strumpor + skor eller stövlar + mössa + vantar.",
+      imagePath: "/klader/kladereftervader-kallt.png",
     };
 
-  // Svalt: 5 till 10
-  if (temperature <= 10)
+  // Kyligt: +6 till +8
+  if (temperature <= 8)
     return {
-      text: "🌤️ Svalt ute. Ta på dig: Jacka 🧥 + vanliga byxor 👖 + strumpor 🧦 + skor 👟. En tunn mössa eller luva kan vara skönt 🧢.",
-      emoji: "🌤️",
+      text: "Lite kyligt ute. Ta på dig: Jacka + vanliga byxor + strumpor + skor. En tunn mössa eller luva kan vara skönt.",
+      imagePath: "/klader/kladereftervader-kyligt.png",
     };
 
-  // Milt: 10 till 15
-  if (temperature <= 15)
+  // Svalt: +9 till +12
+  if (temperature <= 12)
     return {
-      text: "😊 Lite svalt. Ta på dig: En tunn jacka eller tjocktröja 🧥 + vanliga byxor 👖 + skor 👟.",
-      emoji: "😊",
+      text: "Lite svalt. Ta på dig: En tunn jacka eller tjocktröja + vanliga byxor + skor.",
+      imagePath: "/klader/kladereftervader-svalt.png",
     };
 
-  // Lagom varmt: 15 till 20
-  if (temperature <= 20)
+  // Lagom varmt: +13 till +18
+  if (temperature <= 18)
     return {
-      text: "😊 Lagom varmt! Ta på dig: En tröja 👕 + vanliga byxor 👖 + skor 👟. Ta med en tunn jacka 🧥 om du känner dig kall.",
-      emoji: "😊",
+      text: "Lagom varmt! Ta på dig: En tröja + vanliga byxor + skor. Ta med en tunn jacka om du känner dig kall.",
+      imagePath: "/klader/kladereftervader-lagom.png",
     };
 
-  // Varmt: 20 till 25
-  if (temperature <= 25)
+  // Varmt: +19 till +24
+  if (temperature <= 24)
     return {
-      text: "☀️ Varmt ute! Ta på dig: T-shirt 👕 + shorts eller tunna byxor 🩳 + sandaler eller skor 👟 + keps eller solhatt 🧢. Kom ihåg att dricka vatten! 💧",
-      emoji: "☀️",
+      text: "Varmt ute! Ta på dig: T-shirt + shorts eller tunna byxor + sandaler eller skor + keps eller solhatt. Kom ihåg att dricka vatten och smörja in dig med solkräm!",
+      imagePath: "/klader/kladereftervader-varmt.png",
     };
 
-  // Mycket varmt: 25 till 30
-  if (temperature <= 30)
+  // Mycket varmt: +25 till +40
+  if (temperature <= 40)
     return {
-      text: "🌞 VARMT! Ta på dig: T-shirt 👕 + shorts 🩳 + sandaler 👡 + solhatt 🧢. Smörj in dig med solkräm 🧴. Drick MYCKET vatten! 💧",
-      emoji: "🌞",
+      text: "VARMT! Ta på dig: T-shirt + shorts + sandaler + solhatt. Smörj in dig med solkräm. Drick MYCKET vatten!",
+      imagePath: "/klader/kladereftervader-supervarmt.png",
     };
 
-  // Extremt varmt: över 30
+  // Extremt varmt: över +40
   return {
-    text: "🔥 JÄTTEVARMT! Ta på dig: Tunnaste t-shirt 👕 + shorts 🩳 + sandaler 👡 + solhatt 🧢. Smörj in dig med solkräm 🧴. Drick vatten HELA TIDEN 💧. Sök skugga och var inte ute i solen för länge!",
-    emoji: "🔥",
+    text: "JÄTTEVARMT! Ta på dig: Tunnaste t-shirt + shorts + sandaler + solhatt. Smörj in dig med solkräm. Drick vatten HELA TIDEN. Sök skugga och var inte ute i solen för länge!",
+    imagePath: "/klader/kladereftervader-supervarmt.png",
   };
 };
 

@@ -47,5 +47,5 @@ export interface ForecastData {
 
 export interface WeatherTip {
   text: string;
-  emoji: string;
+  imagePath: string;
 }
