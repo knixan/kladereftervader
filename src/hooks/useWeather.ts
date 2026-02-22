@@ -307,12 +307,41 @@ export default function useWeather() {
   }, [forecastData]);
 
   useEffect(() => {
-    const savedCity = getCookie("last_city");
-    if (savedCity && typeof savedCity === "string") {
-      setCity(savedCity);
-      fetchWeatherData(savedCity);
-    }
-  }, [fetchWeatherData]);
+    // In Next/React dev körs effekter ibland två gånger (StrictMode) -> kan ge "blink".
+    // Vi använder en window-scope flagga som resetas vid reload men överlever remount.
+    if (typeof window === "undefined") return;
+    const w = window as typeof window & { __mammasvaderInitialLoadDone?: boolean };
+    if (w.__mammasvaderInitialLoadDone) return;
+    w.__mammasvaderInitialLoadDone = true;
+
+    const loadInitial = async () => {
+      // 1) Om vi har sparad position och användaren inte tidigare nekat -> använd den.
+      try {
+        const deniedBefore = localStorage.getItem("locationDenied") === "true";
+        const lastLocation = localStorage.getItem("lastLocation");
+        if (!deniedBefore && lastLocation) {
+          const [latStr, lonStr] = lastLocation.split(",");
+          const lat = parseFloat(latStr);
+          const lon = parseFloat(lonStr);
+          if (!isNaN(lat) && !isNaN(lon)) {
+            await getWeatherByLocation(lat, lon);
+            return;
+          }
+        }
+      } catch {
+        // ignore
+      }
+
+      // 2) Fallback: senaste stad (cookie)
+      const savedCity = getCookie("last_city");
+      if (savedCity && typeof savedCity === "string") {
+        setCity(savedCity);
+        await fetchWeatherData(savedCity);
+      }
+    };
+
+    void loadInitial();
+  }, [fetchWeatherData, getWeatherByLocation]);
 
   return {
     city,
