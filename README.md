@@ -1,67 +1,67 @@
 [![Next.js](https://img.shields.io/badge/Next.js-16-blue.svg)](https://nextjs.org)
 
-# Kläder efter Väder — En omtänksam väderapp som ger tips på vad man ska ta på sig för kläder. 
+# Dress for the Weather — A thoughtful weather app that provides clothing suggestions. 
 
-En liten, trevlig väderapplikation byggd med Next.js och TypeScript. Appen visar aktuell väderinformation och ger enkla, praktiska kläd- och aktivitetsråd i en varm, lättsam ton — perfekt för familjer och barn. Webbappen riktar sig fämst till barn och ungdommar som har funktionsnedsättning som exempel IF, Autism och andra personer som har svårt att välja kläder efter väder. 
+A small, friendly weather application built with Next.js and TypeScript. The app displays current weather information and provides simple, practical clothing and activity advice in a warm, casual tone — perfect for families and children. The web app is primarily aimed at children and adolescents with disabilities such as intellectual disabilities, autism, and others who have difficulty choosing clothes according to the weather. 
 
 ![](public/kladereftervader.png)
 
-## Funktioner
+## Features
 
-- Sökväder för valfri ort
-- Aktuell väderinformation: temperatur, känslotemp, luftfuktighet, vind och väderbeskrivning
-- "Mamma säger...": korta, användbara klädtips baserat på väderförhållanden
-- Prognoser för kommande timmar
-- Enkel felhantering vid ogiltiga orter
+- Search weather for any location
+- Current weather information: temperature, feels-like temperature, humidity, wind, and weather description
+- "Mom says...": short, useful clothing tips based on weather conditions
+- Forecasts for upcoming hours
+- Simple error handling for invalid locations
 
-## Teknisk stack
+## Tech Stack
 
 - Next.js (App Router)
 - TypeScript
 - React
-- Enkel CSS (finns i `src/app/globals.css`)
+- Simple CSS (located in `src/app/globals.css`)
 
-## Kom igång (lokalt)
+## Getting Started (locally)
 
-1. Klona repot
+1. Clone the repository
 
 ```bash
-git clone https://github.com/<ditt-användarnamn>/mammasvader.git
+git clone https://github.com/<your-username>/mammasvader.git
 cd mammasvader
 ```
 
-2. Installera beroenden
+2. Install dependencies
 
 ```bash
 npm install
-# eller: pnpm install, yarn
+# or: pnpm install, yarn
 ```
 
-3. Skapa en `.env.local` i projektets rot med dina API-nycklar (exempel nedan)
+3. Create a `.env.local` file in the project root with your API keys (example below)
 
 ```
-NEXT_PUBLIC_WEATHER_API_KEY=din_api_nyckel
+NEXT_PUBLIC_WEATHER_API_KEY=your_api_key
 NEXT_PUBLIC_WEATHER_BASE_URL=https://api.openweathermap.org
 ```
 
-4. Starta utvecklingsservern
+4. Start the development server
 
 ```bash
 npm run dev
 ```
 
-Öppna http://localhost:3000 i din webbläsare.
+Open http://localhost:3000 in your web browser.
 
-## Projektstruktur (viktiga filer)
+## Project Structure (important files)
 
-- `src/app/` — Next.js app-katalog (sidor och layout)
-- `src/components/` — UI-komponenter (Header, Footer, WeatherCard, Forecast, SearchInput)
-- `src/hooks/useWeather.ts` — Hook för väderlogik
-- `public/` — statiska filer (bilder, screenshot)
+- `src/app/` — Next.js app directory (pages and layout)
+- `src/components/` — UI components (Header, Footer, WeatherCard, Forecast, SearchInput)
+- `src/hooks/useWeather.ts` — Hook for weather logic
+- `public/` — static files (images, screenshot)
 
-## Miljövariabler
+## Environment Variables
 
-- `NEXT_PUBLIC_WEATHER_API_KEY` — API-nyckel för vädertjänst
-- `NEXT_PUBLIC_WEATHER_BASE_URL` — (valfritt) bas-URL för vädertjänsten
+- `NEXT_PUBLIC_WEATHER_API_KEY` — API key for weather service
+- `NEXT_PUBLIC_WEATHER_BASE_URL` — (optional) base URL for the weather service
 
 
