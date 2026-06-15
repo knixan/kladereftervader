@@ -49,3 +49,5 @@ export interface WeatherTip {
   text: string;
   imagePath: string;
 }
+
+declare module "*.css";

@@ -32,6 +32,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "src/**/*.d.ts", // Explicitly include all .d.ts files in src
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
