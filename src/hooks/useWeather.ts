@@ -10,189 +10,144 @@ export interface WeatherTip {
   text: string;
   imagePath: string;
   color: string;
+  clothes: string[]; // Innehåller nycklar för vilka ikoner som ska visas
 }
 
 const getWeatherTip = (
-weatherId: number,
-temperature: number,
-windSpeed: number
+  weatherId: number,
+  temperature: number,
+  windSpeed: number
 ): WeatherTip => {
 
-// ÅSKA
-if (weatherId >= 200 && weatherId <= 232)
-return {
-text: "Det åskar. Gå inomhus om du kan.",
-imagePath: "/klader/åska.png",
-color: "#64748b", // Gråblå
-};
+  // ÅSKA
+  if (weatherId >= 200 && weatherId <= 232)
+    return {
+      text: "Det åskar. Gå in nu.",
+      imagePath: "/klader/åska.png",
+      color: "#64748b",
+      clothes: ["jacka", "byxor", "skor"],
+    };
 
-// STORM
-if (windSpeed >= 24) {
-if (temperature <= 5)
-return {
-text: "Det stormar. Ta på dig varma kläder.",
-imagePath: "/klader/snöstorm.png",
-color: "#3b82f6",
-};
+  // STORM
+  if (windSpeed >= 24) {
+    if (temperature <= 5)
+      return {
+        text: "Mycket vind och kallt. Ta på varma kläder.",
+        imagePath: "/klader/snöstorm.png",
+        color: "#3b82f6",
+        clothes: ["jacka", "termobyxor", "mossa", "vantar", "vinterskor"],
+      };
 
+    return {
+      text: "Mycket vind ute. Stanna inne om du vill.",
+      imagePath: "/klader/storm.png",
+      color: "#475569",
+      clothes: ["jacka", "byxor", "skor"],
+    };
+  }
 
-return {
-  text: "Det stormar ute. Var försiktig.",
-  imagePath: "/klader/storm.png",
-  color: "#475569",
-};
+  // SNÖ
+  if (weatherId >= 600 && weatherId <= 622)
+    return {
+      text: "Det snöar. Ta på tjock jacka, mössa och vantar.",
+      imagePath: temperature <= -3 ? "/klader/superkallt.png" : "/klader/kallt.png",
+      color: temperature <= -3 ? "#2563eb" : "#60a5fa",
+      clothes: ["jacka", "termobyxor", "mossa", "vantar", "vinterskor"],
+    };
 
+  // SNÖBLANDAT REGN / SLASK
+  if (weatherId >= 611 && weatherId <= 613)
+    return {
+      text: "Det är blött och kallt. Ta på regnkläder.",
+      imagePath: "/klader/regn.png",
+      color: "#3b82f6",
+      clothes: ["jacka", "termobyxor", "vantar", "vinterskor", "paraply"],
+    };
 
-}
+  // REGN
+  if ((weatherId >= 300 && weatherId <= 321) || (weatherId >= 500 && weatherId <= 531)) {
+    if (temperature <= 10)
+      return {
+        text: "Det regnar och är kallt. Ta på regnkläder.",
+        imagePath: "/klader/regn.png",
+        color: "#3b82f6",
+        clothes: ["jacka", "termobyxor", "vantar", "vinterskor", "paraply"],
+      };
 
-// SNÖ
-if (weatherId >= 600 && weatherId <= 622)
-return {
-text:
-temperature <= -3
-? "Det snöar. Ta på dig vinterjacka, mössa och vantar."
-: "Det snöar. Ta på dig varma kläder.",
-imagePath:
-temperature <= -3
-? "/klader/superkallt.png"
-: "/klader/kallt.png",
-color: temperature <= -3 ? "#2563eb" : "#60a5fa",
-};
+    return {
+      text: "Det regnar. Ta på regnkläder eller ta paraply.",
+      imagePath: "/klader/regn.png",
+      color: "#60a5fa",
+      clothes: ["jacka", "byxor", "skor", "paraply"],
+    };
+  }
 
-// SNÖBLANDAT REGN / SLASK
-if (weatherId >= 611 && weatherId <= 613)
-return {
-text: "Det är blött ute. Ta på dig fleecefodrat regnställ.",
-imagePath: "/klader/regn.png",
-color: "#3b82f6",
-};
+  // DIMMA
+  if (weatherId >= 701 && weatherId <= 781) {
+    return {
+      text: "Det är dimma. Svårt att se.",
+      imagePath: "/klader/kallt.png",
+      color: "#475569",
+      clothes: ["jacka", "byxor", "skor"],
+    };
+  }
 
-// REGN
-if (
-(weatherId >= 300 && weatherId <= 321) ||
-(weatherId >= 500 && weatherId <= 531)
-) {
-if (temperature <= 10)
-return {
-text: "Det regnar. Ta på dig fleecefodrat regnställ.",
-imagePath: "/klader/regn.png",
-color: "#3b82f6",
-};
+  // TEMPERATURBASERADE RÅD
+  if (temperature <= -3)
+    return {
+      text: "Superkallt! Ta på tjock jacka, mössa, vantar och varma byxor.",
+      imagePath: "/klader/superkallt.png",
+      color: "#2563eb",
+      clothes: ["jacka", "langkalsonger", "termobyxor", "mossa", "vantar", "vinterskor"],
+    };
 
+  if (temperature <= 4)
+    return {
+      text: "Kallt ute. Ta på jacka, byxor och mössa.",
+      imagePath: "/klader/kallt.png",
+      color: "#60a5fa",
+      clothes: ["jacka", "byxor", "mossa", "skor"],
+    };
 
-return {
-  text: "Det regnar. Ta på dig regnkläder.",
-  imagePath: "/klader/regn.png",
-  color: "#60a5fa",
-};
+  if (temperature <= 10)
+    return {
+      text: "Lite kallt. Ta på jacka, byxor, mössa och tunna vantar.",
+      imagePath: "/klader/kyligt.png",
+      color: "#0d9488",
+      clothes: ["jacka", "byxor", "mossa", "tunnavantar", "skor"],
+    };
 
+  if (temperature <= 16)
+    return {
+      text: "Svalt ute. Ta på dig en tjock tröja eller tunn jacka.",
+      imagePath: "/klader/svalt.png",
+      color: "#16a34a",
+      clothes: ["jacka", "byxor", "skor"],
+    };
 
-}
+  if (temperature <= 18)
+    return {
+      text: "Skönt ute. Du kan ha tröja och vanliga byxor.",
+      imagePath: "/klader/jummet.png",
+      color: "#facc15",
+      clothes: ["tshirt", "byxor", "skor"],
+    };
 
-// DIMMA
-if (weatherId >= 701 && weatherId <= 781) {
-if (temperature <= -3)
-return {
-text: "Det är dimmigt ute.",
-imagePath: "/klader/superkallt.png",
-color: "#2563eb",
-};
+  if (temperature <= 22)
+    return {
+      text: "Varmt ute. Ta på t-shirt och shorts.",
+      imagePath: "/klader/varmt.png",
+      color: "#ea580c",
+      clothes: ["tshirt", "shorts", "skor", "keps"],
+    };
 
-if (temperature <= 4)
   return {
-    text: "Det är dimmigt ute.",
-    imagePath: "/klader/kallt.png",
-    color: "#60a5fa",
+    text: "Mycket varmt! Ta på t-shirt och shorts. Drick vatten.",
+    imagePath: "/klader/supervarmt.png",
+    color: "#dc2626",
+    clothes: ["linne", "shorts", "tofflor", "keps", "vatten", "solkram"],
   };
-
-if (temperature <= 10)
-  return {
-    text: "Det är dimmigt ute.",
-    imagePath: "/klader/kyligt.png",
-    color: "#0d9488",
-  };
-
-if (temperature <= 16)
-  return {
-    text: "Det är dimmigt ute.",
-    imagePath: "/klader/svalt.png",
-    color: "#16a34a",
-  };
-
-if (temperature <= 18)
-  return {
-    text: "Det är dimmigt ute.",
-    imagePath: "/klader/jummet.png",
-    color: "#facc15",
-  };
-
-if (temperature <= 22)
-  return {
-    text: "Det är dimmigt ute.",
-    imagePath: "/klader/varmt.png",
-    color: "#ea580c",
-  };
-
-return {
-  text: "Det är dimmigt ute.",
-  imagePath: "/klader/supervarmt.png",
-  color: "#dc2626",
 };
-
-
-}
-
-// TEMPERATURBASERADE RÅD
-
-if (temperature <= -3)
-return {
-text: "Mycket kallt. Ta på dig vinterjacka, mössa och vantar.",
-imagePath: "/klader/superkallt.png",
-color: "#2563eb", // Blå
-};
-
-if (temperature <= 4)
-return {
-text: "Kallt ute. Ta på dig jacka och mössa.",
-imagePath: "/klader/kallt.png",
-color: "#60a5fa", // Ljusblå
-};
-
-if (temperature <= 10)
-return {
-text: "Lite kyligt. Ta på dig vår- eller höstjacka, byxor, mössa och fingervantar.",
-imagePath: "/klader/kyligt.png",
-color: "#0d9488", // Turkos
-};
-
-if (temperature <= 16)
-return {
-text: "Lite svalt. En tröja räcker.",
-imagePath: "/klader/svalt.png",
-color: "#16a34a", // Grön
-};
-
-if (temperature <= 18)
-return {
-text: "Skönt ute. T-shirt och byxor passar bra.",
-imagePath: "/klader/jummet.png",
-color: "#facc15", // Gul
-};
-
-if (temperature <= 22)
-return {
-text: "Varmt ute. T-shirt och shorts passar bra.",
-imagePath: "/klader/varmt.png",
-color: "#ea580c", // Orange
-};
-
-return {
-text: "Mycket varmt ute. Ta med vatten.",
-imagePath: "/klader/supervarmt.png",
-color: "#dc2626", // Röd
-};
-};
-
 
 export default function useWeather() {
   const [city, setCity] = useState<string>("");
@@ -203,9 +158,7 @@ export default function useWeather() {
 
   const fetchWeatherData = useCallback(async (searchCity: string) => {
     if (!searchCity || !API_KEY) {
-      setError(
-        "Du stavade antagligen fel prova igen. Skriv inna mellanslag efter en ort."
-      );
+      setError("Skriv en stad och prova igen.");
       return;
     }
     setLoading(true);
@@ -313,25 +266,17 @@ export default function useWeather() {
   );
 
   const getFilteredForecast = useCallback(() => {
-    if (!forecastData) {
-      return null;
-    }
-    // `list` är en array med prognoser i 3-timmarsintervall
-    const forecastList = forecastData.list;
-    // Här filtrerar vi ut de fyra första prognoserna
-    return forecastList.slice(0, 4);
+    if (!forecastData) return null;
+    return forecastData.list.slice(0, 4);
   }, [forecastData]);
 
   useEffect(() => {
-    // In Next/React dev körs effekter ibland två gånger (StrictMode) -> kan ge "blink".
-    // Vi använder en window-scope flagga som resetas vid reload men överlever remount.
     if (typeof window === "undefined") return;
     const w = window as typeof window & { __mammasvaderInitialLoadDone?: boolean };
     if (w.__mammasvaderInitialLoadDone) return;
     w.__mammasvaderInitialLoadDone = true;
 
     const loadInitial = async () => {
-      // 1) Om vi har sparad position och användaren inte tidigare nekat -> använd den.
       try {
         const deniedBefore = localStorage.getItem("locationDenied") === "true";
         const lastLocation = localStorage.getItem("lastLocation");
@@ -348,7 +293,6 @@ export default function useWeather() {
         // ignore
       }
 
-      // 2) Fallback: senaste stad (cookie)
       const savedCity = getCookie("last_city");
       if (savedCity && typeof savedCity === "string") {
         setCity(savedCity);

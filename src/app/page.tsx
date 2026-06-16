@@ -8,7 +8,6 @@ import LocationButton from "@/components/LocationButton";
 import WeatherCard from "@/components/WeatherCard";
 import Forecast from "@/components/Forecast";
 import Footer from "@/components/Footer";
-import Image from "next/image";
 
 export default function Home() {
   const {
@@ -39,7 +38,7 @@ export default function Home() {
 
   return (
     <div className="w-full min-h-screen px-4 sm:px-6 lg:px-10 py-6 sm:py-10">
-      <div className="mx-auto w-full max-w-6xl flex flex-col gap-6 sm:gap-8">
+      <div className="mx-auto w-full max-w-3xl flex flex-col gap-6 sm:gap-8">
         <Header />
 
         <main className="w-full rounded-[32px] bg-white/75 backdrop-blur-md border border-white/60 shadow-[0_12px_40px_rgba(15,23,42,0.12)] p-5 sm:p-8">
@@ -52,13 +51,13 @@ export default function Home() {
             </div>
 
             {loading && (
-              <div className="text-base sm:text-lg p-4 rounded-2xl bg-[#4279b8] text-[#ffffff] font-semibold animate-pulse">
+              <div className="text-base sm:text-lg p-4 rounded-2xl bg-[#4279b8] text-[#ffffff] font-semibold animate-pulse text-center">
                 Laddar väder...
               </div>
             )}
 
             {error && (
-              <div className="bg-[#cc1622] text-[#ffffff] p-4 rounded-2xl">
+              <div className="bg-[#cc1622] text-[#ffffff] p-4 rounded-2xl text-center">
                 <p className="text-sm sm:text-base font-bold">{error}</p>
               </div>
             )}
@@ -73,24 +72,13 @@ export default function Home() {
             
             return (
               <>
-                <section className="mt-6 grid gap-6 lg:grid-cols-[1.35fr_0.65fr] lg:items-stretch">
+                {/* Nu visas endast WeatherCard i full bredd, den högra sektionen är helt borttagen */}
+                <section className="mt-6 w-full">
                   <WeatherCard
                     weatherData={weatherData}
                     iconUrl={`${API_ICON_URL}${weatherData.weather[0].icon}@2x.png`}
+                    weatherTip={weatherTip}
                   />
-
-                  <div className="w-full h-full rounded-[32px] p-5 sm:p-7 bg-[#ffffff] shadow-xl flex flex-col items-center justify-center text-[#064e3b]">
-                    <Image
-                      src={weatherTip.imagePath}
-                      alt="Klädrekommendation"
-                      width={250}
-                      height={250}
-                      className="mb-3 sm:mb-4"
-                    />
-                    <p className="text-base sm:text-lg font-black leading-snug text-center">
-                      {weatherTip.text}
-                    </p>
-                  </div>
                 </section>
 
                 {forecastItems && forecastItems.length > 0 && (

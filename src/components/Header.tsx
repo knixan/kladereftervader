@@ -1,4 +1,4 @@
-// import Image from "next/image";
+// src\components\Header.tsx
 export default function Header() {
   return (
     <header className="text-center w-full">
@@ -7,9 +7,9 @@ export default function Header() {
       </h1>
 
 
-      <p className="text-base sm:text-lg md:text-xl font-bold bg-[#51b1e8] text-[#ffffff] py-3 sm:py-4 px-5 sm:px-6 rounded-3xl leading-snug shadow-sm">
+      {/* <p className="text-base sm:text-lg md:text-xl font-bold bg-[#51b1e8] text-[#ffffff] py-3 sm:py-4 px-5 sm:px-6 rounded-3xl leading-snug shadow-sm">
         Tips på hur du ska klä dig efter vädret idag 💛
-      </p>
+      </p> */}
     </header>
   );
 }

@@ -1,46 +1,127 @@
 import { WeatherData } from "@/types/weather.d";
 import Image from "next/image";
 
+// React Icons
+import { GiMonclerJacket, GiArmoredPants, GiSkirt, GiShorts, GiLargeDress, GiGloves, GiWinterGloves } from "react-icons/gi";
+import { FaSocks, FaUmbrella } from "react-icons/fa";
+import { FaBottleWater, FaRedhat } from "react-icons/fa6";
+import { IoShirtOutline } from "react-icons/io5";
+import { PiPants, PiPantsFill, PiBaseballCap, PiSneakerFill } from "react-icons/pi";
+import { CgCap } from "react-icons/cg";
+import { CiShirt } from "react-icons/ci";
+
 interface WeatherCardProps {
   weatherData: WeatherData;
   iconUrl: string;
+  weatherTip: {
+    text: string;
+    imagePath: string;
+    color: string;
+    clothes: string[];
+  };
 }
 
-export default function WeatherCard({ weatherData, iconUrl }: WeatherCardProps) {
+export default function WeatherCard({
+  weatherData,
+  iconUrl,
+  weatherTip,
+}: WeatherCardProps) {
   if (!weatherData) return null;
 
-  const { name, main, weather, wind } = weatherData;
+  const { name, main, weather } = weatherData;
+
+  // Funktion för att mappa textsträng till rätt ikon eller lokal bildfil
+  const renderClothIcon = (clothKey: string) => {
+    const iconSize = 44; // Stora ikoner för barnen
+    switch (clothKey) {
+      case "jacka": return <GiMonclerJacket size={iconSize} title="Jacka" />;
+      case "strumpor": return <FaSocks size={iconSize} title="Strumpor" />;
+      case "tshirt": return <IoShirtOutline size={iconSize} title="T-shirt" />;
+      case "byxor": return <PiPants size={iconSize} title="Byxor" />;
+      case "langkalsonger": return <GiArmoredPants size={iconSize} title="Långkalsonger" />;
+      case "termobyxor": return <PiPantsFill size={iconSize} title="Tjocka byxor" />;
+      case "kjor": return <GiSkirt size={iconSize} title="Kjol" />;
+      case "linne": return <CiShirt size={iconSize} title="Linne" />;
+      case "shorts": return <GiShorts size={iconSize} title="Shorts" />;
+      case "klanning": return <GiLargeDress size={iconSize} title="Klänning" />;
+      case "tunnavantar": return <GiGloves size={iconSize} title="Tunna vantar" />;
+      case "vantar": return <GiWinterGloves size={iconSize} title="Varma vantar" />;
+      case "mossa": return <CgCap size={iconSize} title="Mössa" />;
+      case "keps": return <PiBaseballCap size={iconSize} title="Keps" />;
+      case "hatt": return <FaRedhat size={iconSize} title="Hatt" />;
+      case "vinterskor": return <PiSneakerFill size={iconSize} title="Vinterskor" />;
+      case "vatten": return <FaBottleWater size={iconSize} title="Vattenflaska" />;
+      case "paraply": return <FaUmbrella size={iconSize} title="Paraply" />;
+      
+      // Lokala bilder från public/icons/
+      case "skor": 
+        return <Image src="/icons/sneakers.png" alt="Skor" width={iconSize} height={iconSize} className="object-contain" />;
+      case "tofflor": 
+        return <Image src="/icons/slippers.png" alt="Tofflor" width={iconSize} height={iconSize} className="object-contain" />;
+      case "solkram": 
+        return <Image src="/icons/sunlotion.png" alt="Solkräm" width={iconSize} height={iconSize} className="object-contain" />;
+      default: return null;
+    }
+  };
 
   return (
-    <div className="w-full h-full rounded-[32px] p-5 sm:p-7 md:p-9 text-center text-[#ffffff] shadow-xl bg-gradient-to-br from-[#51b1e8] to-[#827bd4] flex flex-col justify-between">
-      <h2 className="text-2xl sm:text-3xl md:text-3xl font-black mb-3 sm:mb-5 tracking-tight">
-        {name}
-      </h2>
-
-      <Image
-        src={iconUrl}
-        alt={weather[0].description}
-        width={135}
-        height={135}
-        className="mx-auto"
-      />
-
-      <p className="text-4xl sm:text-5xl md:text-6xl font-black mt-2 sm:mt-3">
-        {Math.round(main.temp)}°
-      </p>
-
-      <p className="text-base sm:text-lg mt-2 opacity-95">
-        Känns som {Math.round(main.feels_like)}°
-      </p>
-
-      <div className="mt-4 sm:mt-5 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 text-base sm:text-lg font-bold">
-        <div className="bg-[#ffffff]/95 text-[#1e293b] rounded-2xl p-3 sm:p-4">
-          {main.humidity}% fukt
+    <div
+      className="w-full rounded-[32px] p-6 sm:p-8 text-center text-white shadow-xl flex flex-col gap-6"
+      style={{
+        background: `linear-gradient(135deg, ${weatherTip.color}, ${weatherTip.color}cc)`,
+      }}
+    >
+      {/* 1. Stad, Väderikon och Temperatur högst upp */}
+      <div>
+        <h2 className="text-3xl font-black tracking-wide">{name}</h2>
+        <div className="flex items-center justify-center gap-2 mt-2">
+          <Image
+            src={iconUrl}
+            alt={weather[0].description}
+            width={250}
+            height={350}
+          />
+          <p className="text-6xl font-black">{Math.round(main.temp)}°</p>
         </div>
+        <p className="text-base font-bold opacity-80">
+          Känns som {Math.round(main.feels_like)}°
+        </p>
+      </div>
 
-        <div className="bg-[#ffffff]/95 text-[#1e293b] rounded-2xl p-3 sm:p-4">
-          {wind.speed} m/s vind
-        </div>
+  {/* 2. Den stora bilden som är under väderikonen - Med vit bakgrund och vit ram */}
+<div className="bg-white border-4 border-white rounded-2xl p-3 inline-block mx-auto shadow-lg max-w-full">
+  <Image
+    src={weatherTip.imagePath}
+    alt="Klädtips bild"
+    width={350}
+    height={450}
+    className="mx-auto rounded-xl object-contain"
+    priority
+  />
+</div>
+
+      {/* 3. Kommentarerna ligger nu DIREKT under bilden */}
+      <div className="bg-black/15 rounded-2xl p-5 border border-white/10">
+        <p className="text-xl sm:text-2xl font-black leading-snug tracking-wide">
+          {weatherTip.text}
+        </p>
+
+        {/* 4. Klädikoner (klädesplagg) som passar till vädret, placerade längst ner i sektionen */}
+        {weatherTip.clothes && weatherTip.clothes.length > 0 && (
+          <div className="mt-5">
+            <p className="text-xs font-bold uppercase tracking-wider opacity-70 mb-3">Ta på dig det här:</p>
+            <div className="flex flex-wrap justify-center gap-4 bg-white/10 p-4 rounded-xl">
+              {weatherTip.clothes.map((item, index) => (
+                <div 
+                  key={index} 
+                  className="p-3 bg-white text-slate-800 rounded-2xl shadow-md flex items-center justify-center transform hover:scale-105 transition"
+                >
+                  {renderClothIcon(item)}
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

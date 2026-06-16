@@ -1,0 +1,84 @@
+React Icons
+
+Jacka
+import { GiMonclerJacket } from "react-icons/gi";
+<GiMonclerJacket />
+
+Strumpor
+import { FaSocks } from "react-icons/fa";
+<FaSocks />
+
+T-shirt
+import { IoShirtOutline } from "react-icons/io5";
+<IoShirtOutline />
+
+Byxor
+import { PiPants } from "react-icons/pi";
+<PiPants />
+
+Långkallsonger/leggings (superkallt)
+import { GiArmoredPants } from "react-icons/gi";
+<GiArmoredPants />
+
+Överdragsbyxor/termobyxor/vinterbyxor
+import { PiPantsFill } from "react-icons/pi";
+<PiPantsFill />
+
+Kjol
+import { GiSkirt } from "react-icons/gi";
+<GiSkirt />
+
+Linne
+import { CiShirt } from "react-icons/ci";
+<CiShirt />
+
+Shorts
+import { GiShorts } from "react-icons/gi";
+<GiShorts />
+
+Klänning
+import { GiLargeDress } from "react-icons/gi";
+<GiLargeDress />
+
+Fingervantar/tunna vantar
+import { GiGloves } from "react-icons/gi";
+<GiGloves />
+
+Vantar
+import { GiWinterGloves } from "react-icons/gi";
+<GiWinterGloves />
+
+Mössa
+import { CgCap } from "react-icons/cg";
+<CgCap />
+
+Keps
+import { PiBaseballCap } from "react-icons/pi";
+<PiBaseballCap />
+
+Hatt
+import { FaRedhat } from "react-icons/fa6";
+<FaRedhat />
+
+Vinterskor
+import { PiSneakerFill } from "react-icons/pi";
+<PiSneakerFill />
+
+Skor
+public\icons\sneakers.png
+
+Tofflor
+public\icons\slippers.png
+
+Vatten
+import { FaBottleWater } from "react-icons/fa6";
+<FaBottleWater />
+
+parraply
+import { FaUmbrella } from "react-icons/fa";
+<FaUmbrella />
+
+Solkräm
+public\icons\sunlotion.png
+
+
