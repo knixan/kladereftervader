@@ -71,21 +71,21 @@ export default function WeatherCard({
         background: `linear-gradient(135deg, ${weatherTip.color}, ${weatherTip.color}cc)`,
       }}
     >
-      {/* 1. Stad, Väderikon och Temperatur högst upp */}
-      <div>
-        <h2 className="text-3xl font-black tracking-wide">{name}</h2>
-        <div className="flex items-center justify-center gap-2 mt-2">
+   {/* 1. Stad, Mindre Väderikon och Mindre Temperatur högst upp */}
+      <div className="flex flex-col items-center justify-center gap-1">
+        <h2 className="text-2xl font-black tracking-wide">{name}</h2>
+        <div className="flex items-center justify-center gap-2">
           <Image
             src={iconUrl}
             alt={weather[0].description}
-            width={250}
-            height={350}
+            width={48} 
+            height={48}
           />
-          <p className="text-6xl font-black">{Math.round(main.temp)}°</p>
+          <p className="text-3xl font-black">{Math.round(main.temp)}°</p> 
+          <span className="text-sm font-bold opacity-75">
+            (Känns som {Math.round(main.feels_like)}°)
+          </span>
         </div>
-        <p className="text-base font-bold opacity-80">
-          Känns som {Math.round(main.feels_like)}°
-        </p>
       </div>
 
   {/* 2. Den stora bilden som är under väderikonen - Med vit bakgrund och vit ram */}

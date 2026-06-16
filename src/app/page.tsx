@@ -43,11 +43,27 @@ export default function Home() {
 
         <main className="w-full rounded-[32px] bg-white/75 backdrop-blur-md border border-white/60 shadow-[0_12px_40px_rgba(15,23,42,0.12)] p-5 sm:p-8">
           <section className="flex flex-col gap-4">
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full">
+            
+            {/* 1. Sökrutan i full bredd högst upp */}
+            <div className="w-full">
+              <SearchInput city={city} setCity={setCity} onSearch={handleSearch} />
+            </div>
+
+            {/* 2. Knapparna ligger brevid varandra på en rad (även i mobilen) */}
+            <div className="flex flex-row gap-2 sm:gap-4 w-full">
+              {/* SÖK-knappen (tar upp halva utrymmet) */}
+              <button
+                onClick={handleSearch}
+                className="flex-1 text-base sm:text-lg font-extrabold rounded-3xl bg-[#dd3957] text-[#ffffff] shadow-md
+                           hover:bg-[#cc1622] active:scale-[0.99] transition h-[62px] whitespace-nowrap"
+              >
+                SÖK 🔍
+              </button>
+              
+              {/* Min plats-knappen (tar upp halva utrymmet) */}
               <div className="flex-1">
-                <SearchInput city={city} setCity={setCity} onSearch={handleSearch} />
+                <LocationButton onLocationFound={handleLocationFound} loading={loading} />
               </div>
-              <LocationButton onLocationFound={handleLocationFound} loading={loading} />
             </div>
 
             {loading && (
@@ -72,7 +88,6 @@ export default function Home() {
             
             return (
               <>
-                {/* Nu visas endast WeatherCard i full bredd, den högra sektionen är helt borttagen */}
                 <section className="mt-6 w-full">
                   <WeatherCard
                     weatherData={weatherData}
