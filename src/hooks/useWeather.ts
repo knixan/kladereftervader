@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { getCookie, setCookie } from "cookies-next";
-import { WeatherData, ForecastData } from "@/types/weather.d";
+import { WeatherData, ForecastData, ForecastItem } from "@/types/weather.d";
 
 const API_KEY = process.env.NEXT_PUBLIC_OPENWEATHER_API_KEY;
 const API_URL = "https://api.openweathermap.org/data/2.5";
@@ -10,7 +10,7 @@ export interface WeatherTip {
   text: string;
   imagePath: string;
   color: string;
-  clothes: string[]; // Innehåller nycklar för vilka ikoner som ska visas
+  clothes: string[];
 }
 
 const getWeatherTip = (
@@ -18,7 +18,6 @@ const getWeatherTip = (
   temperature: number,
   windSpeed: number
 ): WeatherTip => {
-
   // ÅSKA
   if (weatherId >= 200 && weatherId <= 232)
     return {
@@ -156,6 +155,7 @@ export default function useWeather() {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 
+  // 1. Sök via stadsnamn
   const fetchWeatherData = useCallback(async (searchCity: string) => {
     if (!searchCity || !API_KEY) {
       setError("Skriv en stad och prova igen.");
@@ -179,10 +179,10 @@ export default function useWeather() {
       if (!forecastResponse.ok) {
         throw new Error("Kunde inte hämta prognosdata.");
       }
-      const forecastData: ForecastData = await forecastResponse.json();
+      const fData: ForecastData = await forecastResponse.json();
 
       setWeatherData(currentData);
-      setForecastData(forecastData);
+      setForecastData(fData);
       setCookie("last_city", searchCity, { maxAge: 60 * 60 * 24 * 30 });
     } catch (err) {
       if (err instanceof Error) {
@@ -197,79 +197,100 @@ export default function useWeather() {
     }
   }, []);
 
-  const getWeatherByLocation = useCallback(
-    async (lat?: number, lon?: number) => {
-      if (!API_KEY) {
-        setError("API-nyckeln saknas. Kontrollera din .env-fil.");
-        return;
-      }
+  // 2. Sök via GPS / Min plats
+  const getWeatherByLocation = useCallback(async (lat?: number, lon?: number) => {
+    if (!API_KEY) {
+      setError("API-nyckeln saknas. Kontrollera din .env-fil.");
+      return;
+    }
 
-      const hasCoords = typeof lat === "number" && typeof lon === "number";
-      const getCoords = () =>
-        new Promise<GeolocationPosition>((resolve, reject) => {
-          if (typeof navigator === "undefined" || !navigator.geolocation) {
-            reject(new Error("Geolocation stöds inte i din webbläsare."));
-            return;
-          }
-          navigator.geolocation.getCurrentPosition(resolve, reject, {
-            enableHighAccuracy: true,
-            timeout: 10000,
-          });
+    const hasCoords = typeof lat === "number" && typeof lon === "number";
+    const getCoords = () =>
+      new Promise<GeolocationPosition>((resolve, reject) => {
+        if (typeof navigator === "undefined" || !navigator.geolocation) {
+          reject(new Error("Geolocation stöds inte i din webbläsare."));
+          return;
+        }
+        navigator.geolocation.getCurrentPosition(resolve, reject, {
+          enableHighAccuracy: true,
+          timeout: 10000,
         });
+      });
 
-      setLoading(true);
-      setError(null);
+    setLoading(true);
+    setError(null);
 
-      try {
-        let latitude = lat;
-        let longitude = lon;
+    try {
+      let latitude = lat;
+      let longitude = lon;
 
-        if (!hasCoords) {
-          const position = await getCoords();
-          latitude = position.coords.latitude;
-          longitude = position.coords.longitude;
-        }
-
-        const currentWeatherResponse = await fetch(
-          `${API_URL}/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric&lang=sv`
-        );
-        if (!currentWeatherResponse.ok) {
-          throw new Error("Kunde inte hämta väder för din plats.");
-        }
-        const currentData: WeatherData = await currentWeatherResponse.json();
-
-        const forecastResponse = await fetch(
-          `${API_URL}/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric&lang=sv`
-        );
-        if (!forecastResponse.ok) {
-          throw new Error("Kunde inte hämta prognosdata för din plats.");
-        }
-        const forecastData: ForecastData = await forecastResponse.json();
-
-        setWeatherData(currentData);
-        setForecastData(forecastData);
-        setCity(currentData.name || "");
-        setCookie("last_city", currentData.name || "", { maxAge: 60 * 60 * 24 * 30 });
-      } catch (err) {
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError("Ett okänt fel inträffade.");
-        }
-        setWeatherData(null);
-        setForecastData(null);
-      } finally {
-        setLoading(false);
+      if (!hasCoords) {
+        const position = await getCoords();
+        latitude = position.coords.latitude;
+        longitude = position.coords.longitude;
       }
-    },
-    []
-  );
 
+      const currentWeatherResponse = await fetch(
+        `${API_URL}/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric&lang=sv`
+      );
+      if (!currentWeatherResponse.ok) {
+        throw new Error("Kunde inte hämta väder för din plats.");
+      }
+      const currentData: WeatherData = await currentWeatherResponse.json();
+
+      const forecastResponse = await fetch(
+        `${API_URL}/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric&lang=sv`
+      );
+      if (!forecastResponse.ok) {
+        throw new Error("Kunde inte hämta prognosdata för din plats.");
+      }
+      const fData: ForecastData = await forecastResponse.json();
+
+      setWeatherData(currentData);
+      setForecastData(fData);
+      setCity(currentData.name || "");
+      setCookie("last_city", currentData.name || "", { maxAge: 60 * 60 * 24 * 30 });
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("Ett okänt fel inträffade.");
+      }
+      setWeatherData(null);
+      setForecastData(null);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  // 3. Filtrera timprognos (senare idag)
   const getFilteredForecast = useCallback(() => {
     if (!forecastData) return null;
     return forecastData.list.slice(0, 4);
   }, [forecastData]);
 
+  // 4. NYHET: Filtrera fram 7-dagarsprognosen (Runt lunchtid kl 12:00)
+  const getSevenDayForecast = useCallback(() => {
+    if (!forecastData) return null;
+
+    const dailyForecasts: ForecastItem[] = [];
+    const seenDates = new Set<string>();
+    const today = new Date().toLocaleDateString("sv-SE");
+
+    forecastData.list.forEach((item) => {
+      const dateStr = new Date(item.dt * 1000).toLocaleDateString("sv-SE");
+      
+      // Hoppa över idag (visas redan i huvudkortet) och ta bara en punkt per ny dag
+      if (dateStr !== today && !seenDates.has(dateStr)) {
+        seenDates.add(dateStr);
+        dailyForecasts.push(item);
+      }
+    });
+
+    return dailyForecasts.slice(0, 5);
+  }, [forecastData]);
+
+  // 5. Automatisk laddning vid start
   useEffect(() => {
     if (typeof window === "undefined") return;
     const w = window as typeof window & { __mammasvaderInitialLoadDone?: boolean };
@@ -314,6 +335,7 @@ export default function useWeather() {
     getWeatherByLocation,
     getWeatherTip,
     getFilteredForecast,
+    getSevenDayForecast, // Nu korrekt tillgänglig för din Page-komponent!
     API_ICON_URL,
   };
 }

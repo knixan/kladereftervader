@@ -7,6 +7,7 @@ import SearchInput from "@/components/SearchInput";
 import LocationButton from "@/components/LocationButton";
 import WeatherCard from "@/components/WeatherCard";
 import Forecast from "@/components/Forecast";
+import SevenDayForecast from "@/components/SevenDayForecast"; // Fixat: Tog bort det lösa snedstrecket här!
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -20,10 +21,12 @@ export default function Home() {
     getWeatherByLocation,
     getWeatherTip,
     getFilteredForecast,
+    getSevenDayForecast,
     API_ICON_URL,
   } = useWeather();
 
   const forecastItems = getFilteredForecast();
+  const sevenDayItems = getSevenDayForecast();
 
   function handleSearch() {
     fetchWeatherData(city);
@@ -49,9 +52,8 @@ export default function Home() {
               <SearchInput city={city} setCity={setCity} onSearch={handleSearch} />
             </div>
 
-            {/* 2. Knapparna ligger brevid varandra på en rad (även i mobilen) */}
+            {/* 2. Sökknappen och Min plats bredvid varandra */}
             <div className="flex flex-row gap-2 sm:gap-4 w-full">
-              {/* SÖK-knappen (tar upp halva utrymmet) */}
               <button
                 onClick={handleSearch}
                 className="flex-1 text-base sm:text-lg font-extrabold rounded-3xl bg-[#dd3957] text-[#ffffff] shadow-md
@@ -60,7 +62,6 @@ export default function Home() {
                 SÖK 🔍
               </button>
               
-              {/* Min plats-knappen (tar upp halva utrymmet) */}
               <div className="flex-1">
                 <LocationButton onLocationFound={handleLocationFound} loading={loading} />
               </div>
@@ -88,6 +89,7 @@ export default function Home() {
             
             return (
               <>
+                {/* Det stora väderkortet med den stora bilden överst */}
                 <section className="mt-6 w-full">
                   <WeatherCard
                     weatherData={weatherData}
@@ -96,9 +98,17 @@ export default function Home() {
                   />
                 </section>
 
+                {/* Prognos senare idag */}
                 {forecastItems && forecastItems.length > 0 && (
                   <section className="mt-6">
                     <Forecast items={forecastItems} iconUrlBase={API_ICON_URL} />
+                  </section>
+                )}
+
+                {/* NYHET: Prognos - 7 dagar framåt */}
+                {sevenDayItems && sevenDayItems.length > 0 && (
+                  <section className="mt-6">
+                    <SevenDayForecast items={sevenDayItems} iconUrlBase={API_ICON_URL} />
                   </section>
                 )}
               </>

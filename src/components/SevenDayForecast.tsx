@@ -1,8 +1,7 @@
-// src\components\Forecast.tsx
 import Image from "next/image";
 import type { ForecastItem } from "@/types/weather.d";
 
-interface ForecastProps {
+interface SevenDayProps {
   items: ForecastItem[];
   iconUrlBase: string;
 }
@@ -50,45 +49,23 @@ function getForecastClothes(temp: number) {
   };
 }
 
-export default function Forecast({
-  items,
-  iconUrlBase,
-}: ForecastProps) {
-  if (!items || items.length === 0) {
-    return null;
-  }
-
+export default function SevenDayForecast({ items, iconUrlBase }: SevenDayProps) {
   return (
     <aside className="w-full rounded-[32px] bg-[#eaf6ff] border border-[#d5edff] p-5 sm:p-6 shadow-sm">
-      <h3 className="text-2xl font-black text-center mb-6">
-        Prognos - Senare idag
-      </h3>
-
+      <h3 className="text-2xl font-black text-center mb-6">Prognos - Kommande dagar</h3>
       <div className="grid grid-cols-2 gap-4">
         {items.map((item) => {
-          const clothes = getForecastClothes(
-            Math.round(item.main.temp)
-          );
-
+          const clothes = getForecastClothes(Math.round(item.main.temp));
+          
           return (
-            <div
-              key={item.dt}
+            <div 
+              key={item.dt} 
               className="rounded-3xl p-4 text-center text-white shadow-lg"
-              style={{
-                backgroundColor: clothes.color,
-              }}
+              style={{ backgroundColor: clothes.color }}
             >
-              <p className="font-black text-lg">
-                Kl{" "}
-                {new Date(item.dt * 1000).toLocaleTimeString(
-                  "sv-SE",
-                  {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  }
-                )}
+              <p className="font-black text-lg uppercase">
+                {new Date(item.dt * 1000).toLocaleDateString("sv-SE", { weekday: 'long' })}
               </p>
-
               <Image
                 src={`${iconUrlBase}${item.weather[0].icon}@2x.png`}
                 alt={item.weather[0].description}
@@ -96,7 +73,6 @@ export default function Forecast({
                 height={70}
                 className="mx-auto"
               />
-
               <Image
                 src={clothes.image}
                 alt="Klädtips"
@@ -104,12 +80,7 @@ export default function Forecast({
                 height={350}
                 className="mx-auto"
               />
-
-              
-
-              <p className="text-4xl font-black">
-                {Math.round(item.main.temp)}°
-              </p>
+              <p className="text-4xl font-black">{Math.round(item.main.temp)}°</p>
             </div>
           );
         })}
