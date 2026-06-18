@@ -1,0 +1,62 @@
+import type { MetadataRoute } from "next";
+
+export default function manifest(): MetadataRoute.Manifest {
+  return {
+    id: "/",
+    name: "Kläder efter Väder",
+    short_name: "KläderVäder",
+    description: "Se vad du ska ha på dig baserat på vädret idag",
+    start_url: "/",
+    display: "standalone",
+    background_color: "#ffffff",
+    theme_color: "#22c55e",
+    orientation: "portrait",
+    lang: "sv",
+    icons: [
+      {
+        src: "/icon-192.png",
+        sizes: "192x192",
+        type: "image/png",
+        purpose: "any",
+      },
+      {
+        src: "/icon-192.png",
+        sizes: "192x192",
+        type: "image/png",
+        purpose: "maskable",
+      },
+      {
+        src: "/icon-512.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "any",
+      },
+      {
+        src: "/icon-512.png",
+        sizes: "512x512",
+        type: "image/png",
+        purpose: "maskable",
+      },
+    ],
+    screenshots: [
+      {
+        src: "/screenshot -1.png",
+        type: "image/png",
+        form_factor: "narrow",
+        label: "Kläder efter Väder",
+      },
+      {
+        src: "/screenshot-2.png",
+        type: "image/png",
+        form_factor: "narrow",
+        label: "Kläder efter Väder",
+      },
+      {
+        src: "/screenshot-3.png",
+        type: "image/png",
+        form_factor: "narrow",
+        label: "Kläder efter Väder",
+      },
+    ],
+  };
+}

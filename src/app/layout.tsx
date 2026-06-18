@@ -21,7 +21,6 @@ export const metadata: Metadata = {
     "vad ska man ha på sig",
   ],
   authors: [{ name: "Kläder efter Väder" }],
-  manifest: "/manifest.json",
   openGraph: {
     title: "Kläder efter Väder",
     description:
