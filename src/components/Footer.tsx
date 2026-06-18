@@ -13,6 +13,13 @@ export default function Footer() {
           <Link href="/om" className="underline hover:text-[#1e293b] transition">
             Om Kläder efter Väder - Se alla kläder och iconer
           </Link>
+            <Link
+            href="/om"
+        
+            className="inline-block text-center bg-[#22c55e] hover:bg-[#16a34a] active:scale-[0.99] transition text-white font-extrabold rounded-2xl py-3 px-6 shadow-md text-sm"
+          >
+            Ladda ner appen!
+          </Link>
         </p>
       </div>
 
