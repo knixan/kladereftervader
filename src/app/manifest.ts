@@ -41,18 +41,21 @@ export default function manifest(): MetadataRoute.Manifest {
     screenshots: [
       {
         src: "/screenshot-1.png",
+        sizes: "496x1080",
         type: "image/png",
         form_factor: "narrow",
         label: "Kläder efter Väder",
       },
       {
         src: "/screenshot-2.png",
+        sizes: "481x1080",
         type: "image/png",
         form_factor: "narrow",
         label: "Kläder efter Väder",
       },
       {
         src: "/screenshot-3.png",
+        sizes: "497x1080",
         type: "image/png",
         form_factor: "narrow",
         label: "Kläder efter Väder",
