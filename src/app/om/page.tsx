@@ -7,22 +7,54 @@ const weatherCards = [
     imagePath: "/klader/superkallt.png",
     title: "Superkallt",
     condition: "Under -3°C",
-    description: "Tjock vinterjacka, termobyxor, långkalsonger, mössa, halsduk och varma vantar.",
-    clothes: ["tshirt", "hoodie", "jacka", "langkalsonger", "termobyxor", "halsduk", "mossa", "vantar", "strumpor", "vinterskor"],
+    description:
+      "Tjock vinterjacka, termobyxor, långkalsonger, mössa, halsduk och varma vantar.",
+    clothes: [
+      "tshirt",
+      "hoodie",
+      "jacka",
+      "langkalsonger",
+      "termobyxor",
+      "halsduk",
+      "mossa",
+      "vantar",
+      "strumpor",
+      "vinterskor",
+    ],
   },
   {
     imagePath: "/klader/kallt.png",
     title: "Kallt",
     condition: "-3°C till 4°C",
     description: "Vinterjacka, termobyxor, mössa, halsduk och varma vantar.",
-    clothes: ["tshirt", "hoodie", "jacka", "termobyxor", "halsduk", "mossa", "vantar", "strumpor", "vinterskor"],
+    clothes: [
+      "tshirt",
+      "hoodie",
+      "jacka",
+      "termobyxor",
+      "halsduk",
+      "mossa",
+      "vantar",
+      "strumpor",
+      "vinterskor",
+    ],
   },
   {
     imagePath: "/klader/snöstorm.png",
     title: "Snöstorm / Blåst",
     condition: "Storm och kyla",
     description: "Vindtät jacka, termobyxor, mössa, halsduk och varma vantar.",
-    clothes: ["tshirt", "hoodie", "jacka", "termobyxor", "halsduk", "mossa", "vantar", "strumpor", "vinterskor"],
+    clothes: [
+      "tshirt",
+      "hoodie",
+      "jacka",
+      "termobyxor",
+      "halsduk",
+      "mossa",
+      "vantar",
+      "strumpor",
+      "vinterskor",
+    ],
   },
   {
     imagePath: "/klader/slask.png",
@@ -36,7 +68,16 @@ const weatherCards = [
     title: "Kyligt",
     condition: "4°C till 10°C",
     description: "Jacka, byxor, mössa och tunna vantar.",
-    clothes: ["tshirt", "hoodie", "jacka", "byxor", "mossa", "tunnavantar", "strumpor", "skor"],
+    clothes: [
+      "tshirt",
+      "hoodie",
+      "jacka",
+      "byxor",
+      "mossa",
+      "tunnavantar",
+      "strumpor",
+      "skor",
+    ],
   },
   {
     imagePath: "/klader/svalt.png",
@@ -71,7 +112,15 @@ const weatherCards = [
     title: "Supervarmt",
     condition: "Över 24°C",
     description: "Sommarkläder, tofflor, solkräm och vatten.",
-    clothes: ["tshirt", "linne", "shorts", "tofflor", "keps", "vatten", "solkram"],
+    clothes: [
+      "tshirt",
+      "linne",
+      "shorts",
+      "tofflor",
+      "keps",
+      "vatten",
+      "solkram",
+    ],
   },
   {
     imagePath: "/klader/regn.png",
@@ -99,7 +148,6 @@ const weatherCards = [
 export default function OmPage() {
   return (
     <div className="w-full min-h-screen px-4 py-8 flex flex-col items-center gap-8">
-
       <div className="w-full max-w-2xl bg-white/75 backdrop-blur-md rounded-[32px] shadow-xl p-6 sm:p-8 flex flex-col gap-4">
         <Link
           href="/"
@@ -113,7 +161,9 @@ export default function OmPage() {
         </h1>
 
         <div className="flex flex-col gap-3 bg-[#f0fdf4] border border-[#bbf7d0] rounded-2xl p-4">
-          <p className="text-sm font-bold text-[#166534]">Ladda ned Android-appen</p>
+          <p className="text-sm font-bold text-[#166534]">
+            Ladda ned Android-appen
+          </p>
           <a
             href="/android/KläderVäder.apk"
             download
@@ -124,20 +174,28 @@ export default function OmPage() {
           <p className="text-xs text-[#166534] leading-relaxed">
             <strong>OBS:</strong> Android kan visa en varning som säger{" "}
             <em>&ldquo;Installera okänd app?&rdquo;</em> eller{" "}
-            <em>&ldquo;Din telefon är mer utsatt för angrepp från okända källor&rdquo;</em>.
-            Det är normalt för appar som inte laddas ned via Google Play. Appen är säker att installera.
-            Du kan behöva tillåta installation från okända källor i dina inställningar.
+            <em>
+              &ldquo;Din telefon är mer utsatt för angrepp från okända
+              källor&rdquo;
+            </em>
+            . Det är normalt för appar som inte laddas ned via Google Play.
+            Appen är säker att installera. Du kan behöva tillåta installation
+            från okända källor i dina inställningar.
           </p>
         </div>
 
         <p className="text-sm sm:text-base text-[#475569] leading-relaxed">
-          Kläder efter Väder är en app som hjälper alla barn, men är speciellt anpassad för barn med IF, autism eller
-          språkstörning att förstå vilket väder det är och vad de ska ha på sig.
-          Bilderna nedan visar alla olika vädertyper som appen kan visa.
-          </p>
- <p className="text-sm sm:text-base text-[#475569] leading-relaxed">
-          Appen finns redan för Android du kan ladda ner den här åven men den kommer även till Google Play inom kort. 
-          En iOS-version finns just nu inte iPhone-användare kan redan nu öppna kladereftervader.se i Safari och trycka på dela-knappen → "Lägg till på hemskärmen". Då fungerar den som en app direkt, ingen nedladdning krävs.
+          Kläder efter Väder är en app som hjälper alla barn, men är speciellt
+          anpassad för barn med IF, autism eller språkstörning att förstå vilket
+          väder det är och vad de ska ha på sig. Bilderna nedan visar alla olika
+          vädertyper som appen kan visa.
+        </p>
+        <p className="text-sm sm:text-base text-[#475569] leading-relaxed">
+          Appen finns redan för Android du kan ladda ner den här åven men den
+          kommer även till Google Play inom kort. En iOS-version finns just nu
+          inte iPhone-användare kan redan nu öppna kladereftervader.se i Safari
+          och trycka på dela-knappen → "Lägg till på hemskärmen". Då fungerar
+          den som en app direkt, ingen nedladdning krävs.
         </p>
 
         <p className="text-xs text-[#64748b]">
@@ -200,9 +258,7 @@ export default function OmPage() {
         </div>
       </div>
 
-      <p className="text-xs text-[#94a3b8] pb-4">
-        © 2026 Josefine Eriksson
-      </p>
+      <p className="text-xs text-[#94a3b8] pb-4">© 2026 Josefine Eriksson</p>
     </div>
   );
 }

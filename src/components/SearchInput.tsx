@@ -5,7 +5,11 @@ interface SearchInputProps {
   onSearch: () => void;
 }
 
-export default function SearchInput({ city, setCity, onSearch }: SearchInputProps) {
+export default function SearchInput({
+  city,
+  setCity,
+  onSearch,
+}: SearchInputProps) {
   function handleKeyPress(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter") {
       onSearch();

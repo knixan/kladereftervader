@@ -1,8 +1,12 @@
-[{
-  "relation": ["delegate_permission/common.handle_all_urls"],
-  "target": {
-    "namespace": "android_app",
-    "package_name": "se.vercel.kladereftervader.app",
-    "sha256_cert_fingerprints": ["BA:AF:C6:8B:EE:A6:27:FE:2A:26:F0:DE:8D:EC:87:D7:FF:15:C0:12:06:92:99:1C:F1:5C:33:82:63:66:77:4B"]
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "se.vercel.kladereftervader.app",
+      "sha256_cert_fingerprints": [
+        "BA:AF:C6:8B:EE:A6:27:FE:2A:26:F0:DE:8D:EC:87:D7:FF:15:C0:12:06:92:99:1C:F1:5C:33:82:63:66:77:4B"
+      ]
+    }
   }
-}]
+]

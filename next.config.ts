@@ -40,7 +40,8 @@ const nextConfig: NextConfig = {
           },
           {
             key: "Content-Security-Policy",
-            value: "default-src 'self'; script-src 'self'; connect-src 'self' https://api.openweathermap.org https://openweathermap.org",
+            value:
+              "default-src 'self'; script-src 'self'; connect-src 'self' https://api.openweathermap.org https://openweathermap.org",
           },
         ],
       },

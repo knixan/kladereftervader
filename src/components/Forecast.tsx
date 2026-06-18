@@ -50,10 +50,7 @@ function getForecastClothes(temp: number) {
   };
 }
 
-export default function Forecast({
-  items,
-  iconUrlBase,
-}: ForecastProps) {
+export default function Forecast({ items, iconUrlBase }: ForecastProps) {
   if (!items || items.length === 0) {
     return null;
   }
@@ -66,9 +63,7 @@ export default function Forecast({
 
       <div className="grid grid-cols-2 gap-4">
         {items.map((item) => {
-          const clothes = getForecastClothes(
-            Math.round(item.main.temp)
-          );
+          const clothes = getForecastClothes(Math.round(item.main.temp));
 
           return (
             <div
@@ -80,13 +75,10 @@ export default function Forecast({
             >
               <p className="font-black text-lg">
                 Kl{" "}
-                {new Date(item.dt * 1000).toLocaleTimeString(
-                  "sv-SE",
-                  {
-                    hour: "2-digit",
-                    minute: "2-digit",
-                  }
-                )}
+                {new Date(item.dt * 1000).toLocaleTimeString("sv-SE", {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
               </p>
 
               <Image
@@ -104,8 +96,6 @@ export default function Forecast({
                 height={350}
                 className="mx-auto"
               />
-
-              
 
               <p className="text-4xl font-black">
                 {Math.round(item.main.temp)}°

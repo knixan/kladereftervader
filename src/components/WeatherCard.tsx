@@ -29,7 +29,7 @@ export default function WeatherCard({
         background: `linear-gradient(135deg, ${weatherTip.color}, ${weatherTip.color}cc)`,
       }}
     >
-   {/* 1. Stad, Mindre Väderikon och Mindre Temperatur högst upp */}
+      {/* 1. Stad, Mindre Väderikon och Mindre Temperatur högst upp */}
       <div className="flex flex-col items-center justify-center gap-1">
         <h2 className="text-2xl font-black tracking-wide">{name}</h2>
         <div className="flex items-center justify-center gap-2">
@@ -40,24 +40,24 @@ export default function WeatherCard({
             height={48}
             className="w-8 h-8 sm:w-12 sm:h-12"
           />
-          <p className="text-3xl font-black">{Math.round(main.temp)}°</p> 
+          <p className="text-3xl font-black">{Math.round(main.temp)}°</p>
           <span className="text-sm font-bold opacity-75">
             (Känns som {Math.round(main.feels_like)}°)
           </span>
         </div>
       </div>
 
-  {/* 2. Den stora bilden som är under väderikonen - Med vit bakgrund och vit ram */}
-<div className="bg-white border-4 border-white rounded-2xl p-3 inline-block mx-auto shadow-lg max-w-full">
-  <Image
-    src={weatherTip.imagePath}
-    alt="Klädtips bild"
-    width={350}
-    height={450}
-    className="mx-auto rounded-xl object-contain w-[200px] sm:w-[350px]"
-    priority
-  />
-</div>
+      {/* 2. Den stora bilden som är under väderikonen - Med vit bakgrund och vit ram */}
+      <div className="bg-white border-4 border-white rounded-2xl p-3 inline-block mx-auto shadow-lg max-w-full">
+        <Image
+          src={weatherTip.imagePath}
+          alt="Klädtips bild"
+          width={350}
+          height={450}
+          className="mx-auto rounded-xl object-contain w-[200px] sm:w-[350px]"
+          priority
+        />
+      </div>
 
       {/* 3. Kommentarerna ligger nu DIREKT under bilden */}
       <div className="bg-black/15 rounded-2xl p-5 border border-white/10">
@@ -68,7 +68,9 @@ export default function WeatherCard({
         {/* 4. Klädikoner (klädesplagg) som passar till vädret, placerade längst ner i sektionen */}
         {weatherTip.clothes && weatherTip.clothes.length > 0 && (
           <div className="mt-5">
-            <p className="text-xs font-bold uppercase tracking-wider opacity-70 mb-3">Ta på dig det här:</p>
+            <p className="text-xs font-bold uppercase tracking-wider opacity-70 mb-3">
+              Ta på dig det här:
+            </p>
             <div className="flex flex-wrap justify-center gap-2 sm:gap-4 bg-white/10 p-3 sm:p-4 rounded-xl">
               {weatherTip.clothes.map((item, index) => (
                 <div

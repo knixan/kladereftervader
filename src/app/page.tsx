@@ -36,7 +36,7 @@ export default function Home() {
     (lat: number, lon: number) => {
       getWeatherByLocation(lat, lon);
     },
-    [getWeatherByLocation]
+    [getWeatherByLocation],
   );
 
   return (
@@ -46,10 +46,13 @@ export default function Home() {
 
         <main className="w-full rounded-[32px] bg-white/75 backdrop-blur-md border border-white/60 shadow-[0_12px_40px_rgba(15,23,42,0.12)] p-5 sm:p-8">
           <section className="flex flex-col gap-4">
-            
             {/* 1. Sökrutan i full bredd högst upp */}
             <div className="w-full">
-              <SearchInput city={city} setCity={setCity} onSearch={handleSearch} />
+              <SearchInput
+                city={city}
+                setCity={setCity}
+                onSearch={handleSearch}
+              />
             </div>
 
             {/* 2. Sökknappen och Min plats bredvid varandra */}
@@ -61,9 +64,12 @@ export default function Home() {
               >
                 SÖK 🔍
               </button>
-              
+
               <div className="flex-1">
-                <LocationButton onLocationFound={handleLocationFound} loading={loading} />
+                <LocationButton
+                  onLocationFound={handleLocationFound}
+                  loading={loading}
+                />
               </div>
             </div>
 
@@ -80,40 +86,48 @@ export default function Home() {
             )}
           </section>
 
-          {!loading && weatherData && (() => {
-            const weatherTip = getWeatherTip(
-              weatherData.weather[0].id,
-              weatherData.main.temp,
-              weatherData.wind.speed
-            );
-            
-            return (
-              <>
-                {/* Det stora väderkortet med den stora bilden överst */}
-                <section className="mt-6 w-full">
-                  <WeatherCard
-                    weatherData={weatherData}
-                    iconUrl={`${API_ICON_URL}${weatherData.weather[0].icon}@2x.png`}
-                    weatherTip={weatherTip}
-                  />
-                </section>
+          {!loading &&
+            weatherData &&
+            (() => {
+              const weatherTip = getWeatherTip(
+                weatherData.weather[0].id,
+                weatherData.main.temp,
+                weatherData.wind.speed,
+              );
 
-                {/* Prognos senare idag */}
-                {forecastItems && forecastItems.length > 0 && (
-                  <section className="mt-6">
-                    <Forecast items={forecastItems} iconUrlBase={API_ICON_URL} />
+              return (
+                <>
+                  {/* Det stora väderkortet med den stora bilden överst */}
+                  <section className="mt-6 w-full">
+                    <WeatherCard
+                      weatherData={weatherData}
+                      iconUrl={`${API_ICON_URL}${weatherData.weather[0].icon}@2x.png`}
+                      weatherTip={weatherTip}
+                    />
                   </section>
-                )}
 
-                {/* NYHET: Prognos - 7 dagar framåt */}
-                {sevenDayItems && sevenDayItems.length > 0 && (
-                  <section className="mt-6">
-                    <SevenDayForecast items={sevenDayItems} iconUrlBase={API_ICON_URL} />
-                  </section>
-                )}
-              </>
-            );
-          })()}
+                  {/* Prognos senare idag */}
+                  {forecastItems && forecastItems.length > 0 && (
+                    <section className="mt-6">
+                      <Forecast
+                        items={forecastItems}
+                        iconUrlBase={API_ICON_URL}
+                      />
+                    </section>
+                  )}
+
+                  {/* NYHET: Prognos - 7 dagar framåt */}
+                  {sevenDayItems && sevenDayItems.length > 0 && (
+                    <section className="mt-6">
+                      <SevenDayForecast
+                        items={sevenDayItems}
+                        iconUrlBase={API_ICON_URL}
+                      />
+                    </section>
+                  )}
+                </>
+              );
+            })()}
         </main>
 
         <Footer />

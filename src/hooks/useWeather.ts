@@ -16,7 +16,7 @@ export interface WeatherTip {
 const getWeatherTip = (
   weatherId: number,
   temperature: number,
-  windSpeed: number
+  windSpeed: number,
 ): WeatherTip => {
   // ÅSKA
   if (weatherId >= 200 && weatherId <= 232)
@@ -34,7 +34,17 @@ const getWeatherTip = (
         text: "Mycket vind och kallt. Ta på varma kläder.",
         imagePath: "/klader/snöstorm.png",
         color: "#3b82f6",
-        clothes: ["tshirt", "hoodie", "jacka", "termobyxor", "halsduk", "mossa", "vantar", "strumpor", "vinterskor"],
+        clothes: [
+          "tshirt",
+          "hoodie",
+          "jacka",
+          "termobyxor",
+          "halsduk",
+          "mossa",
+          "vantar",
+          "strumpor",
+          "vinterskor",
+        ],
       };
     return {
       text: "Mycket vind ute. Stanna inne om du vill.",
@@ -50,7 +60,17 @@ const getWeatherTip = (
       text: "Blåsigt och kallt. Skydda dig mot vinden.",
       imagePath: "/klader/snöstorm.png",
       color: "#3b82f6",
-      clothes: ["tshirt", "hoodie", "jacka", "termobyxor", "halsduk", "mossa", "vantar", "strumpor", "vinterskor"],
+      clothes: [
+        "tshirt",
+        "hoodie",
+        "jacka",
+        "termobyxor",
+        "halsduk",
+        "mossa",
+        "vantar",
+        "strumpor",
+        "vinterskor",
+      ],
     };
 
   // SNÖBLANDAT REGN / SLASK — måste ligga FÖRE snö-blocket (611–613 ingår i 600–622)
@@ -69,18 +89,42 @@ const getWeatherTip = (
         text: "Det snöar och är superkallt. Ta på tjock vinterjacka, mössa, halsduk och vantar.",
         imagePath: "/klader/superkallt.png",
         color: "#2563eb",
-        clothes: ["tshirt", "hoodie", "jacka", "langkalsonger", "termobyxor", "halsduk", "mossa", "vantar", "strumpor", "vinterskor"],
+        clothes: [
+          "tshirt",
+          "hoodie",
+          "jacka",
+          "langkalsonger",
+          "termobyxor",
+          "halsduk",
+          "mossa",
+          "vantar",
+          "strumpor",
+          "vinterskor",
+        ],
       };
     return {
       text: "Det snöar. Ta på vinterjacka, mössa, halsduk och vantar.",
       imagePath: "/klader/kallt.png",
       color: "#60a5fa",
-      clothes: ["tshirt", "hoodie", "jacka", "termobyxor", "halsduk", "mossa", "vantar", "strumpor", "vinterskor"],
+      clothes: [
+        "tshirt",
+        "hoodie",
+        "jacka",
+        "termobyxor",
+        "halsduk",
+        "mossa",
+        "vantar",
+        "strumpor",
+        "vinterskor",
+      ],
     };
   }
 
   // REGN
-  if ((weatherId >= 300 && weatherId <= 321) || (weatherId >= 500 && weatherId <= 531)) {
+  if (
+    (weatherId >= 300 && weatherId <= 321) ||
+    (weatherId >= 500 && weatherId <= 531)
+  ) {
     if (temperature <= 10)
       return {
         text: "Det regnar och är kallt. Ta på regnkläder och gummistövlar.",
@@ -103,14 +147,32 @@ const getWeatherTip = (
         text: "Dimma och kallt. Ta på jacka, mössa, halsduk och vantar.",
         imagePath: "/klader/kallt.png",
         color: "#475569",
-        clothes: ["tshirt", "hoodie", "jacka", "termobyxor", "halsduk", "mossa", "vantar", "strumpor", "vinterskor"],
+        clothes: [
+          "tshirt",
+          "hoodie",
+          "jacka",
+          "termobyxor",
+          "halsduk",
+          "mossa",
+          "vantar",
+          "strumpor",
+          "vinterskor",
+        ],
       };
     if (temperature <= 10)
       return {
         text: "Det är dimma ute. Lite kallt — ta på jacka och mössa.",
         imagePath: "/klader/kyligt.png",
         color: "#64748b",
-        clothes: ["tshirt", "hoodie", "jacka", "byxor", "mossa", "strumpor", "skor"],
+        clothes: [
+          "tshirt",
+          "hoodie",
+          "jacka",
+          "byxor",
+          "mossa",
+          "strumpor",
+          "skor",
+        ],
       };
     return {
       text: "Det är dimma ute. Svårt att se.",
@@ -126,7 +188,18 @@ const getWeatherTip = (
       text: "Superkallt! Ta på tjock vinterjacka, termobyxor, mössa, halsduk och vantar.",
       imagePath: "/klader/superkallt.png",
       color: "#2563eb",
-      clothes: ["tshirt", "hoodie", "jacka", "langkalsonger", "termobyxor", "halsduk", "mossa", "vantar", "strumpor", "vinterskor"],
+      clothes: [
+        "tshirt",
+        "hoodie",
+        "jacka",
+        "langkalsonger",
+        "termobyxor",
+        "halsduk",
+        "mossa",
+        "vantar",
+        "strumpor",
+        "vinterskor",
+      ],
     };
 
   if (temperature <= 4)
@@ -134,7 +207,17 @@ const getWeatherTip = (
       text: "Kallt ute. Ta på vinterjacka, termobyxor, mössa, halsduk och vantar.",
       imagePath: "/klader/kallt.png",
       color: "#60a5fa",
-      clothes: ["tshirt", "hoodie", "jacka", "termobyxor", "halsduk", "mossa", "vantar", "strumpor", "vinterskor"],
+      clothes: [
+        "tshirt",
+        "hoodie",
+        "jacka",
+        "termobyxor",
+        "halsduk",
+        "mossa",
+        "vantar",
+        "strumpor",
+        "vinterskor",
+      ],
     };
 
   if (temperature <= 10)
@@ -142,7 +225,16 @@ const getWeatherTip = (
       text: "Lite kallt. Ta på jacka, byxor, mössa och tunna vantar.",
       imagePath: "/klader/kyligt.png",
       color: "#0d9488",
-      clothes: ["tshirt", "hoodie", "jacka", "byxor", "mossa", "tunnavantar", "strumpor", "skor"],
+      clothes: [
+        "tshirt",
+        "hoodie",
+        "jacka",
+        "byxor",
+        "mossa",
+        "tunnavantar",
+        "strumpor",
+        "skor",
+      ],
     };
 
   if (temperature <= 14)
@@ -181,7 +273,15 @@ const getWeatherTip = (
     text: "Mycket varmt! Ta på sommarkläder. Kom ihåg solkräm och vatten.",
     imagePath: "/klader/supervarmt.png",
     color: "#dc2626",
-    clothes: ["tshirt", "linne", "shorts", "tofflor", "keps", "vatten", "solkram"],
+    clothes: [
+      "tshirt",
+      "linne",
+      "shorts",
+      "tofflor",
+      "keps",
+      "vatten",
+      "solkram",
+    ],
   };
 };
 
@@ -203,7 +303,7 @@ export default function useWeather() {
 
     try {
       const currentWeatherResponse = await fetch(
-        `${API_URL}/weather?q=${searchCity}&appid=${API_KEY}&units=metric&lang=sv`
+        `${API_URL}/weather?q=${searchCity}&appid=${API_KEY}&units=metric&lang=sv`,
       );
       if (!currentWeatherResponse.ok) {
         throw new Error("Staden hittades inte, kontrollera stavningen!");
@@ -211,7 +311,7 @@ export default function useWeather() {
       const currentData: WeatherData = await currentWeatherResponse.json();
 
       const forecastResponse = await fetch(
-        `${API_URL}/forecast?lat=${currentData.coord.lat}&lon=${currentData.coord.lon}&appid=${API_KEY}&units=metric&lang=sv`
+        `${API_URL}/forecast?lat=${currentData.coord.lat}&lon=${currentData.coord.lon}&appid=${API_KEY}&units=metric&lang=sv`,
       );
       if (!forecastResponse.ok) {
         throw new Error("Kunde inte hämta prognosdata.");
@@ -235,70 +335,75 @@ export default function useWeather() {
   }, []);
 
   // 2. Sök via GPS / Min plats
-  const getWeatherByLocation = useCallback(async (lat?: number, lon?: number) => {
-    if (!API_KEY) {
-      setError("API-nyckeln saknas. Kontrollera din .env-fil.");
-      return;
-    }
+  const getWeatherByLocation = useCallback(
+    async (lat?: number, lon?: number) => {
+      if (!API_KEY) {
+        setError("API-nyckeln saknas. Kontrollera din .env-fil.");
+        return;
+      }
 
-    const hasCoords = typeof lat === "number" && typeof lon === "number";
-    const getCoords = () =>
-      new Promise<GeolocationPosition>((resolve, reject) => {
-        if (typeof navigator === "undefined" || !navigator.geolocation) {
-          reject(new Error("Geolocation stöds inte i din webbläsare."));
-          return;
-        }
-        navigator.geolocation.getCurrentPosition(resolve, reject, {
-          enableHighAccuracy: true,
-          timeout: 10000,
+      const hasCoords = typeof lat === "number" && typeof lon === "number";
+      const getCoords = () =>
+        new Promise<GeolocationPosition>((resolve, reject) => {
+          if (typeof navigator === "undefined" || !navigator.geolocation) {
+            reject(new Error("Geolocation stöds inte i din webbläsare."));
+            return;
+          }
+          navigator.geolocation.getCurrentPosition(resolve, reject, {
+            enableHighAccuracy: true,
+            timeout: 10000,
+          });
         });
-      });
 
-    setLoading(true);
-    setError(null);
+      setLoading(true);
+      setError(null);
 
-    try {
-      let latitude = lat;
-      let longitude = lon;
+      try {
+        let latitude = lat;
+        let longitude = lon;
 
-      if (!hasCoords) {
-        const position = await getCoords();
-        latitude = position.coords.latitude;
-        longitude = position.coords.longitude;
+        if (!hasCoords) {
+          const position = await getCoords();
+          latitude = position.coords.latitude;
+          longitude = position.coords.longitude;
+        }
+
+        const currentWeatherResponse = await fetch(
+          `${API_URL}/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric&lang=sv`,
+        );
+        if (!currentWeatherResponse.ok) {
+          throw new Error("Kunde inte hämta väder för din plats.");
+        }
+        const currentData: WeatherData = await currentWeatherResponse.json();
+
+        const forecastResponse = await fetch(
+          `${API_URL}/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric&lang=sv`,
+        );
+        if (!forecastResponse.ok) {
+          throw new Error("Kunde inte hämta prognosdata för din plats.");
+        }
+        const fData: ForecastData = await forecastResponse.json();
+
+        setWeatherData(currentData);
+        setForecastData(fData);
+        setCity(currentData.name || "");
+        setCookie("last_city", currentData.name || "", {
+          maxAge: 60 * 60 * 24 * 30,
+        });
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("Ett okänt fel inträffade.");
+        }
+        setWeatherData(null);
+        setForecastData(null);
+      } finally {
+        setLoading(false);
       }
-
-      const currentWeatherResponse = await fetch(
-        `${API_URL}/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric&lang=sv`
-      );
-      if (!currentWeatherResponse.ok) {
-        throw new Error("Kunde inte hämta väder för din plats.");
-      }
-      const currentData: WeatherData = await currentWeatherResponse.json();
-
-      const forecastResponse = await fetch(
-        `${API_URL}/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric&lang=sv`
-      );
-      if (!forecastResponse.ok) {
-        throw new Error("Kunde inte hämta prognosdata för din plats.");
-      }
-      const fData: ForecastData = await forecastResponse.json();
-
-      setWeatherData(currentData);
-      setForecastData(fData);
-      setCity(currentData.name || "");
-      setCookie("last_city", currentData.name || "", { maxAge: 60 * 60 * 24 * 30 });
-    } catch (err) {
-      if (err instanceof Error) {
-        setError(err.message);
-      } else {
-        setError("Ett okänt fel inträffade.");
-      }
-      setWeatherData(null);
-      setForecastData(null);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+    },
+    [],
+  );
 
   // 3. Filtrera timprognos (senare idag)
   const getFilteredForecast = useCallback(() => {
@@ -325,7 +430,7 @@ export default function useWeather() {
         const hour = new Date(item.dt * 1000).getHours();
         const bestHour = new Date(best.dt * 1000).getHours();
         return Math.abs(hour - 12) < Math.abs(bestHour - 12) ? item : best;
-      })
+      }),
     );
 
     return dailyForecasts.slice(0, 5);
@@ -334,7 +439,9 @@ export default function useWeather() {
   // 5. Automatisk laddning vid start
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const w = window as typeof window & { __mammasvaderInitialLoadDone?: boolean };
+    const w = window as typeof window & {
+      __mammasvaderInitialLoadDone?: boolean;
+    };
     if (w.__mammasvaderInitialLoadDone) return;
     w.__mammasvaderInitialLoadDone = true;
 

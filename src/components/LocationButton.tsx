@@ -7,7 +7,10 @@ interface LocationButtonProps {
   loading?: boolean;
 }
 
-export default function LocationButton({ onLocationFound, loading = false }: LocationButtonProps) {
+export default function LocationButton({
+  onLocationFound,
+  loading = false,
+}: LocationButtonProps) {
   const [gettingLocation, setGettingLocation] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [permissionDenied, setPermissionDenied] = useState(false);
@@ -35,7 +38,7 @@ export default function LocationButton({ onLocationFound, loading = false }: Loc
       (position) => {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
-        
+
         try {
           localStorage.setItem("lastLocation", `${lat},${lon}`);
           localStorage.removeItem("locationDenied");
@@ -48,7 +51,9 @@ export default function LocationButton({ onLocationFound, loading = false }: Loc
       (err) => {
         if (err.code === 1) {
           setPermissionDenied(true);
-          setError("Åtkomst till plats nekades. Skriv en stad i sökfältet eller aktivera platstjänster.");
+          setError(
+            "Åtkomst till plats nekades. Skriv en stad i sökfältet eller aktivera platstjänster.",
+          );
           try {
             localStorage.setItem("locationDenied", "true");
           } catch {}
@@ -57,7 +62,7 @@ export default function LocationButton({ onLocationFound, loading = false }: Loc
         }
         setGettingLocation(false);
       },
-      { enableHighAccuracy: true, timeout: 10000 }
+      { enableHighAccuracy: true, timeout: 10000 },
     );
   }, [onLocationFound]);
 
