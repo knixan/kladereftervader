@@ -40,7 +40,7 @@ export default function manifest(): MetadataRoute.Manifest {
     ],
     screenshots: [
       {
-        src: "/screenshot -1.png",
+        src: "/screenshot-1.png",
         type: "image/png",
         form_factor: "narrow",
         label: "Kläder efter Väder",
