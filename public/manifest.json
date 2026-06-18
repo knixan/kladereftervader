@@ -25,10 +25,22 @@
   ],
   "screenshots": [
     {
-      "src": "/kladereftervader.png",
+      "src": "/screenshot -1.png",
       "type": "image/png",
       "form_factor": "narrow",
-      "label": "Kläder efter Väder startsida"
+      "label": "Kläder efter Väder"
+    },
+    {
+      "src": "/screenshot-2.png",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Kläder efter Väder"
+    },
+    {
+      "src": "/screenshot-3.png",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Kläder efter Väder"
     }
   ]
 }
