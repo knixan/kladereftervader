@@ -54,7 +54,7 @@ export default function WeatherCard({
           alt="Klädtips bild"
           width={350}
           height={450}
-          className="mx-auto rounded-xl object-contain w-[200px] sm:w-[350px]"
+          className="mx-auto rounded-xl object-contain w-[200px] sm:w-[350px] h-auto"
           priority
         />
       </div>
