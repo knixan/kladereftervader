@@ -2,8 +2,14 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Kläder Efter Väder",
-  description: "En app som tipsar om hur man ska klä sig efter vädret idag, baserat på aktuella väderdata och personliga preferenser.",
+  title: "Kläder efter Väder",
+  description: "Se vad du ska ha på dig baserat på vädret idag",
+  manifest: "/manifest.json",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "Kläder efter Väder",
+  },
 };
 
 export default function RootLayout({
