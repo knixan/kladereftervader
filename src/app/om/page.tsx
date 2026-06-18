@@ -112,10 +112,32 @@ export default function OmPage() {
           Om Kläder efter Väder
         </h1>
 
+        <div className="flex flex-col gap-3 bg-[#f0fdf4] border border-[#bbf7d0] rounded-2xl p-4">
+          <p className="text-sm font-bold text-[#166534]">Ladda ned Android-appen</p>
+          <a
+            href="/android/KläderVäder.apk"
+            download
+            className="inline-block text-center bg-[#22c55e] hover:bg-[#16a34a] active:scale-[0.99] transition text-white font-extrabold rounded-2xl py-3 px-6 shadow-md text-sm"
+          >
+            Ladda ned APK fil för att installera till android
+          </a>
+          <p className="text-xs text-[#166534] leading-relaxed">
+            <strong>OBS:</strong> Android kan visa en varning som säger{" "}
+            <em>&ldquo;Installera okänd app?&rdquo;</em> eller{" "}
+            <em>&ldquo;Din telefon är mer utsatt för angrepp från okända källor&rdquo;</em>.
+            Det är normalt för appar som inte laddas ned via Google Play. Appen är säker att installera.
+            Du kan behöva tillåta installation från okända källor i dina inställningar.
+          </p>
+        </div>
+
         <p className="text-sm sm:text-base text-[#475569] leading-relaxed">
           Kläder efter Väder är en app som hjälper alla barn, men är speciellt anpassad för barn med IF, autism eller
           språkstörning att förstå vilket väder det är och vad de ska ha på sig.
           Bilderna nedan visar alla olika vädertyper som appen kan visa.
+          </p>
+ <p className="text-sm sm:text-base text-[#475569] leading-relaxed">
+          Appen finns redan för Android du kan ladda ner den här åven men den kommer även till Google Play inom kort. 
+          En iOS-version finns just nu inte iPhone-användare kan redan nu öppna kladereftervader.se i Safari och trycka på dela-knappen → "Lägg till på hemskärmen". Då fungerar den som en app direkt, ingen nedladdning krävs.
         </p>
 
         <p className="text-xs text-[#64748b]">
