@@ -1,14 +1,6 @@
 import { WeatherData } from "@/types/weather.d";
 import Image from "next/image";
-
-// React Icons
-import { GiMonclerJacket, GiArmoredPants, GiSkirt, GiShorts, GiLargeDress, GiGloves, GiWinterGloves } from "react-icons/gi";
-import { FaSocks, FaUmbrella } from "react-icons/fa";
-import { FaBottleWater, FaRedhat } from "react-icons/fa6";
-import { IoShirtOutline } from "react-icons/io5";
-import { PiPants, PiPantsFill, PiBaseballCap, PiSneakerFill } from "react-icons/pi";
-import { CgCap } from "react-icons/cg";
-import { CiShirt } from "react-icons/ci";
+import ClothIcon from "@/components/ClothIcon";
 
 interface WeatherCardProps {
   weatherData: WeatherData;
@@ -29,40 +21,6 @@ export default function WeatherCard({
   if (!weatherData) return null;
 
   const { name, main, weather } = weatherData;
-
-  // Funktion för att mappa textsträng till rätt ikon eller lokal bildfil
-  const renderClothIcon = (clothKey: string) => {
-    const iconSize = 44; // Stora ikoner för barnen
-    switch (clothKey) {
-      case "jacka": return <GiMonclerJacket size={iconSize} title="Jacka" />;
-      case "strumpor": return <FaSocks size={iconSize} title="Strumpor" />;
-      case "tshirt": return <IoShirtOutline size={iconSize} title="T-shirt" />;
-      case "byxor": return <PiPants size={iconSize} title="Byxor" />;
-      case "langkalsonger": return <GiArmoredPants size={iconSize} title="Långkalsonger" />;
-      case "termobyxor": return <PiPantsFill size={iconSize} title="Tjocka byxor" />;
-      case "kjor": return <GiSkirt size={iconSize} title="Kjol" />;
-      case "linne": return <CiShirt size={iconSize} title="Linne" />;
-      case "shorts": return <GiShorts size={iconSize} title="Shorts" />;
-      case "klanning": return <GiLargeDress size={iconSize} title="Klänning" />;
-      case "tunnavantar": return <GiGloves size={iconSize} title="Tunna vantar" />;
-      case "vantar": return <GiWinterGloves size={iconSize} title="Varma vantar" />;
-      case "mossa": return <CgCap size={iconSize} title="Mössa" />;
-      case "keps": return <PiBaseballCap size={iconSize} title="Keps" />;
-      case "hatt": return <FaRedhat size={iconSize} title="Hatt" />;
-      case "vinterskor": return <PiSneakerFill size={iconSize} title="Vinterskor" />;
-      case "vatten": return <FaBottleWater size={iconSize} title="Vattenflaska" />;
-      case "paraply": return <FaUmbrella size={iconSize} title="Paraply" />;
-      
-      // Lokala bilder från public/icons/
-      case "skor": 
-        return <Image src="/icons/sneakers.png" alt="Skor" width={iconSize} height={iconSize} className="object-contain" />;
-      case "tofflor": 
-        return <Image src="/icons/slippers.png" alt="Tofflor" width={iconSize} height={iconSize} className="object-contain" />;
-      case "solkram": 
-        return <Image src="/icons/sunlotion.png" alt="Solkräm" width={iconSize} height={iconSize} className="object-contain" />;
-      default: return null;
-    }
-  };
 
   return (
     <div
@@ -116,7 +74,7 @@ export default function WeatherCard({
                   key={index} 
                   className="p-3 bg-white text-slate-800 rounded-2xl shadow-md flex items-center justify-center transform hover:scale-105 transition"
                 >
-                  {renderClothIcon(item)}
+                  <ClothIcon clothKey={item} size={44} />
                 </div>
               ))}
             </div>

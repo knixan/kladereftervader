@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="w-full text-center py-6 mt-2 text-[#475569] text-xs sm:text-sm flex flex-col gap-3">
@@ -6,6 +8,11 @@ export default function Footer() {
       <div className="max-w-md mx-auto px-4 opacity-90">
         <p className="text-xs sm:text-sm font-medium leading-relaxed">
           Denna app är skapad för att göra det lättare och roligare för barn med IF, autism eller språkstörning att se vilka kläder som passar för dagens väder. ☀️🧥
+        </p>
+         <p className="mt-2">
+          <Link href="/om" className="underline hover:text-[#1e293b] transition">
+            Om Kläder efter Väder - Se alla kläder och iconer
+          </Link>
         </p>
       </div>
 
@@ -29,6 +36,7 @@ export default function Footer() {
         <p className="mt-1 text-[11px] sm:text-xs opacity-75">
           Webbappen är under utveckling och en mobilapp planeras inom kort.
         </p>
+       
       </div>
       
     </footer>

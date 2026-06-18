@@ -24,88 +24,117 @@ const getWeatherTip = (
       text: "Det åskar. Gå in nu.",
       imagePath: "/klader/åska.png",
       color: "#64748b",
-      clothes: ["jacka", "byxor", "skor"],
+      clothes: ["tshirt", "regnklader", "strumpor", "gummistovlar"],
     };
 
-  // STORM
+  // STORM (≥24 m/s)
   if (windSpeed >= 24) {
     if (temperature <= 5)
       return {
         text: "Mycket vind och kallt. Ta på varma kläder.",
         imagePath: "/klader/snöstorm.png",
         color: "#3b82f6",
-        clothes: ["jacka", "termobyxor", "mossa", "vantar", "vinterskor"],
+        clothes: ["tshirt", "hoodie", "jacka", "termobyxor", "halsduk", "mossa", "vantar", "strumpor", "vinterskor"],
       };
-
     return {
       text: "Mycket vind ute. Stanna inne om du vill.",
       imagePath: "/klader/storm.png",
       color: "#475569",
-      clothes: ["jacka", "byxor", "skor"],
+      clothes: ["tshirt", "jacka", "byxor", "strumpor", "skor"],
     };
   }
 
-  // SNÖ
-  if (weatherId >= 600 && weatherId <= 622)
+  // MÅTTLIG VIND + VINTERKYLA (10–23 m/s och ≤0°C)
+  if (windSpeed >= 10 && temperature <= 0)
     return {
-      text: "Det snöar. Ta på tjock jacka, mössa och vantar.",
-      imagePath: temperature <= -3 ? "/klader/superkallt.png" : "/klader/kallt.png",
-      color: temperature <= -3 ? "#2563eb" : "#60a5fa",
-      clothes: ["jacka", "termobyxor", "mossa", "vantar", "vinterskor"],
+      text: "Blåsigt och kallt. Skydda dig mot vinden.",
+      imagePath: "/klader/snöstorm.png",
+      color: "#3b82f6",
+      clothes: ["tshirt", "hoodie", "jacka", "termobyxor", "halsduk", "mossa", "vantar", "strumpor", "vinterskor"],
     };
 
-  // SNÖBLANDAT REGN / SLASK
+  // SNÖBLANDAT REGN / SLASK — måste ligga FÖRE snö-blocket (611–613 ingår i 600–622)
   if (weatherId >= 611 && weatherId <= 613)
     return {
-      text: "Det är blött och kallt. Ta på regnkläder.",
-      imagePath: "/klader/regn.png",
+      text: "Det är slask ute. Ta på fleasfodrade regnkläder och gummistövlar.",
+      imagePath: "/klader/slask.png",
       color: "#3b82f6",
-      clothes: ["jacka", "termobyxor", "vantar", "vinterskor", "paraply"],
+      clothes: ["tshirt", "hoodie", "regnklader", "strumpor", "gummistovlar"],
     };
+
+  // SNÖ
+  if (weatherId >= 600 && weatherId <= 622) {
+    if (temperature <= -3)
+      return {
+        text: "Det snöar och är superkallt. Ta på tjock vinterjacka, mössa, halsduk och vantar.",
+        imagePath: "/klader/superkallt.png",
+        color: "#2563eb",
+        clothes: ["tshirt", "hoodie", "jacka", "langkalsonger", "termobyxor", "halsduk", "mossa", "vantar", "strumpor", "vinterskor"],
+      };
+    return {
+      text: "Det snöar. Ta på vinterjacka, mössa, halsduk och vantar.",
+      imagePath: "/klader/kallt.png",
+      color: "#60a5fa",
+      clothes: ["tshirt", "hoodie", "jacka", "termobyxor", "halsduk", "mossa", "vantar", "strumpor", "vinterskor"],
+    };
+  }
 
   // REGN
   if ((weatherId >= 300 && weatherId <= 321) || (weatherId >= 500 && weatherId <= 531)) {
     if (temperature <= 10)
       return {
-        text: "Det regnar och är kallt. Ta på regnkläder.",
+        text: "Det regnar och är kallt. Ta på regnkläder och gummistövlar.",
         imagePath: "/klader/regn.png",
         color: "#3b82f6",
-        clothes: ["jacka", "termobyxor", "vantar", "vinterskor", "paraply"],
+        clothes: ["tshirt", "regnklader", "strumpor", "gummistovlar"],
       };
-
     return {
       text: "Det regnar. Ta på regnkläder eller ta paraply.",
       imagePath: "/klader/regn.png",
       color: "#60a5fa",
-      clothes: ["jacka", "byxor", "skor", "paraply"],
+      clothes: ["tshirt", "regnklader", "strumpor", "paraply"],
     };
   }
 
-  // DIMMA
+  // DIMMA — temperaturmedveten
   if (weatherId >= 701 && weatherId <= 781) {
+    if (temperature <= 0)
+      return {
+        text: "Dimma och kallt. Ta på jacka, mössa, halsduk och vantar.",
+        imagePath: "/klader/kallt.png",
+        color: "#475569",
+        clothes: ["tshirt", "hoodie", "jacka", "termobyxor", "halsduk", "mossa", "vantar", "strumpor", "vinterskor"],
+      };
+    if (temperature <= 10)
+      return {
+        text: "Det är dimma ute. Lite kallt — ta på jacka och mössa.",
+        imagePath: "/klader/kyligt.png",
+        color: "#64748b",
+        clothes: ["tshirt", "hoodie", "jacka", "byxor", "mossa", "strumpor", "skor"],
+      };
     return {
-      text: "Det är dimma. Svårt att se.",
-      imagePath: "/klader/kallt.png",
-      color: "#475569",
-      clothes: ["jacka", "byxor", "skor"],
+      text: "Det är dimma ute. Svårt att se.",
+      imagePath: "/klader/svalt.png",
+      color: "#9ca3af",
+      clothes: ["tshirt", "jacka", "byxor", "strumpor", "skor"],
     };
   }
 
   // TEMPERATURBASERADE RÅD
   if (temperature <= -3)
     return {
-      text: "Superkallt! Ta på tjock jacka, mössa, vantar och varma byxor.",
+      text: "Superkallt! Ta på tjock vinterjacka, termobyxor, mössa, halsduk och vantar.",
       imagePath: "/klader/superkallt.png",
       color: "#2563eb",
-      clothes: ["jacka", "langkalsonger", "termobyxor", "mossa", "vantar", "vinterskor"],
+      clothes: ["tshirt", "hoodie", "jacka", "langkalsonger", "termobyxor", "halsduk", "mossa", "vantar", "strumpor", "vinterskor"],
     };
 
   if (temperature <= 4)
     return {
-      text: "Kallt ute. Ta på jacka, byxor och mössa.",
+      text: "Kallt ute. Ta på vinterjacka, termobyxor, mössa, halsduk och vantar.",
       imagePath: "/klader/kallt.png",
       color: "#60a5fa",
-      clothes: ["jacka", "byxor", "mossa", "skor"],
+      clothes: ["tshirt", "hoodie", "jacka", "termobyxor", "halsduk", "mossa", "vantar", "strumpor", "vinterskor"],
     };
 
   if (temperature <= 10)
@@ -113,38 +142,46 @@ const getWeatherTip = (
       text: "Lite kallt. Ta på jacka, byxor, mössa och tunna vantar.",
       imagePath: "/klader/kyligt.png",
       color: "#0d9488",
-      clothes: ["jacka", "byxor", "mossa", "tunnavantar", "skor"],
+      clothes: ["tshirt", "hoodie", "jacka", "byxor", "mossa", "tunnavantar", "strumpor", "skor"],
     };
 
-  if (temperature <= 16)
+  if (temperature <= 14)
     return {
-      text: "Svalt ute. Ta på dig en tjock tröja eller tunn jacka.",
+      text: "Svalt ute. Ta på en tröja och vanliga byxor.",
       imagePath: "/klader/svalt.png",
       color: "#16a34a",
-      clothes: ["jacka", "byxor", "skor"],
+      clothes: ["tshirt", "jacka", "byxor", "strumpor", "skor"],
     };
 
   if (temperature <= 18)
     return {
-      text: "Skönt ute. Du kan ha tröja och vanliga byxor.",
-      imagePath: "/klader/jummet.png",
-      color: "#facc15",
-      clothes: ["tshirt", "byxor", "skor"],
+      text: "Milt ute. En tunn jacka och vanliga kläder räcker.",
+      imagePath: "/klader/milt.png",
+      color: "#22c55e",
+      clothes: ["tshirt", "hoodie", "byxor", "strumpor", "skor"],
     };
 
-  if (temperature <= 22)
+  if (temperature <= 21)
     return {
-      text: "Varmt ute. Ta på t-shirt och shorts.",
+      text: "Skönt ute. Du kan ha t-shirt och vanliga byxor.",
+      imagePath: "/klader/jummet.png",
+      color: "#facc15",
+      clothes: ["tshirt", "byxor", "strumpor", "skor"],
+    };
+
+  if (temperature <= 24)
+    return {
+      text: "Varmt ute. Ta på t-shirt och shorts. Drick vatten.",
       imagePath: "/klader/varmt.png",
       color: "#ea580c",
-      clothes: ["tshirt", "shorts", "skor", "keps"],
+      clothes: ["tshirt", "shorts", "vatten", "strumpor", "skor"],
     };
 
   return {
-    text: "Mycket varmt! Ta på t-shirt och shorts. Drick vatten.",
+    text: "Mycket varmt! Ta på sommarkläder. Kom ihåg solkräm och vatten.",
     imagePath: "/klader/supervarmt.png",
     color: "#dc2626",
-    clothes: ["linne", "shorts", "tofflor", "keps", "vatten", "solkram"],
+    clothes: ["tshirt", "linne", "shorts", "tofflor", "keps", "vatten", "solkram"],
   };
 };
 
@@ -269,23 +306,27 @@ export default function useWeather() {
     return forecastData.list.slice(0, 4);
   }, [forecastData]);
 
-  // 4. NYHET: Filtrera fram 7-dagarsprognosen (Runt lunchtid kl 12:00)
+  // 4. Filtrera fram 7-dagarsprognosen — väljer datapunkten närmast kl 12:00 per dag
   const getSevenDayForecast = useCallback(() => {
     if (!forecastData) return null;
 
-    const dailyForecasts: ForecastItem[] = [];
-    const seenDates = new Set<string>();
     const today = new Date().toLocaleDateString("sv-SE");
+    const byDate: Record<string, ForecastItem[]> = {};
 
     forecastData.list.forEach((item) => {
       const dateStr = new Date(item.dt * 1000).toLocaleDateString("sv-SE");
-      
-      // Hoppa över idag (visas redan i huvudkortet) och ta bara en punkt per ny dag
-      if (dateStr !== today && !seenDates.has(dateStr)) {
-        seenDates.add(dateStr);
-        dailyForecasts.push(item);
-      }
+      if (dateStr === today) return;
+      if (!byDate[dateStr]) byDate[dateStr] = [];
+      byDate[dateStr].push(item);
     });
+
+    const dailyForecasts = Object.values(byDate).map((items) =>
+      items.reduce((best, item) => {
+        const hour = new Date(item.dt * 1000).getHours();
+        const bestHour = new Date(best.dt * 1000).getHours();
+        return Math.abs(hour - 12) < Math.abs(bestHour - 12) ? item : best;
+      })
+    );
 
     return dailyForecasts.slice(0, 5);
   }, [forecastData]);

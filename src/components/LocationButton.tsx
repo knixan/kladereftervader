@@ -82,13 +82,13 @@ export default function LocationButton({ onLocationFound, loading = false }: Loc
       </button>
 
       {error && (
-        <div className="bg-[#cc1622] text-[#ffffff] p-3 rounded-2xl text-sm absolute md:mt-16 z-10 max-w-xs shadow-lg">
+        <div className="bg-[#cc1622] text-[#ffffff] p-3 rounded-2xl text-sm md:absolute md:mt-16 z-10 max-w-xs shadow-lg">
           {error}
         </div>
       )}
 
       {permissionDenied && (
-        <div className="p-4 bg-[#f9fafb] border-2 border-[#9dd5ff] rounded-2xl absolute md:mt-16 z-10 max-w-xs shadow-lg">
+        <div className="p-4 bg-[#f9fafb] border-2 border-[#9dd5ff] rounded-2xl md:absolute md:mt-16 z-10 max-w-xs shadow-lg">
           <p className="text-sm font-bold text-[#1e293b] mb-2">
             Platstjänst inaktiverad
           </p>
