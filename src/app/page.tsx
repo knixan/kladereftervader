@@ -56,8 +56,8 @@ export default function Home() {
             <div className="flex flex-row gap-2 sm:gap-4 w-full">
               <button
                 onClick={handleSearch}
-                className="flex-1 text-base sm:text-lg font-extrabold rounded-3xl bg-[#dd3957] text-[#ffffff] shadow-md
-                           hover:bg-[#cc1622] active:scale-[0.99] transition h-[62px] whitespace-nowrap"
+                className="flex-1 text-sm sm:text-lg font-extrabold rounded-3xl bg-[#dd3957] text-[#ffffff] shadow-md
+                           hover:bg-[#cc1622] active:scale-[0.99] transition h-[48px] sm:h-[62px] whitespace-nowrap"
               >
                 SÖK 🔍
               </button>

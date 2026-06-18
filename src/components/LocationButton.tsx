@@ -75,8 +75,8 @@ export default function LocationButton({ onLocationFound, loading = false }: Loc
       <button
         onClick={handleGetLocation}
         disabled={loading || gettingLocation}
-        className="text-base sm:text-lg font-extrabold px-6 rounded-3xl bg-[#22c55e] text-[#ffffff] shadow-md
-                   hover:bg-[#16a34a] active:scale-[0.99] transition disabled:opacity-60 disabled:cursor-not-allowed h-[62px] whitespace-nowrap"
+        className="text-sm sm:text-lg font-extrabold px-6 rounded-3xl bg-[#22c55e] text-[#ffffff] shadow-md
+                   hover:bg-[#16a34a] active:scale-[0.99] transition disabled:opacity-60 disabled:cursor-not-allowed h-[48px] sm:h-[62px] whitespace-nowrap"
       >
         {gettingLocation || loading ? "📍 Hämtar..." : "📍 Min plats"}
       </button>

@@ -36,8 +36,9 @@ export default function WeatherCard({
           <Image
             src={iconUrl}
             alt={weather[0].description}
-            width={48} 
+            width={48}
             height={48}
+            className="w-8 h-8 sm:w-12 sm:h-12"
           />
           <p className="text-3xl font-black">{Math.round(main.temp)}°</p> 
           <span className="text-sm font-bold opacity-75">
@@ -53,7 +54,7 @@ export default function WeatherCard({
     alt="Klädtips bild"
     width={350}
     height={450}
-    className="mx-auto rounded-xl object-contain"
+    className="mx-auto rounded-xl object-contain w-[200px] sm:w-[350px]"
     priority
   />
 </div>
@@ -68,11 +69,11 @@ export default function WeatherCard({
         {weatherTip.clothes && weatherTip.clothes.length > 0 && (
           <div className="mt-5">
             <p className="text-xs font-bold uppercase tracking-wider opacity-70 mb-3">Ta på dig det här:</p>
-            <div className="flex flex-wrap justify-center gap-4 bg-white/10 p-4 rounded-xl">
+            <div className="flex flex-wrap justify-center gap-2 sm:gap-4 bg-white/10 p-3 sm:p-4 rounded-xl">
               {weatherTip.clothes.map((item, index) => (
-                <div 
-                  key={index} 
-                  className="p-3 bg-white text-slate-800 rounded-2xl shadow-md flex items-center justify-center transform hover:scale-105 transition"
+                <div
+                  key={index}
+                  className="p-2 sm:p-3 bg-white text-slate-800 rounded-2xl shadow-md flex items-center justify-center transform hover:scale-105 transition"
                 >
                   <ClothIcon clothKey={item} size={44} />
                 </div>

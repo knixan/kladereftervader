@@ -19,7 +19,7 @@ export default function SearchInput({ city, setCity, onSearch }: SearchInputProp
       value={city}
       onChange={(e) => setCity(e.target.value)}
       onKeyDown={handleKeyPress}
-      className="w-full text-base sm:text-lg p-4 sm:p-5 rounded-3xl border-2 border-[#9dd5ff] bg-[#ffffff] text-[#1e293b] placeholder:text-[#94a3b8]
+      className="w-full text-sm sm:text-lg p-3 sm:p-5 rounded-3xl border-2 border-[#9dd5ff] bg-[#ffffff] text-[#1e293b] placeholder:text-[#94a3b8]
                  focus:outline-none focus:ring-4 focus:ring-[#d4f0c8] focus:border-[#82bc39]"
     />
   );

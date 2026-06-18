@@ -2,7 +2,7 @@
 export default function Header() {
   return (
     <header className="text-center w-full">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#4279b8] mb-3 sm:mb-4 tracking-tight">
+        <h1 className="text-2xl sm:text-4xl md:text-5xl font-black text-[#4279b8] mb-2 sm:mb-4 tracking-tight">
         🌤 Kläder efter Väder
       </h1>
 
