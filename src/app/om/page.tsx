@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import ClothIcon from "@/components/ClothIcon";
+import { IoLogoAndroid } from "react-icons/io";
+import { IoLogoApple } from "react-icons/io5";
 
 const weatherCards = [
   {
@@ -169,7 +171,8 @@ export default function OmPage() {
             download
             className="inline-block text-center bg-[#22c55e] hover:bg-[#16a34a] active:scale-[0.99] transition text-white font-extrabold rounded-2xl py-3 px-6 shadow-md text-sm"
           >
-            Ladda ned APK fil för att installera till android
+            <IoLogoAndroid className="inline mr-2 text-lg" />
+            Ladda ned för android
           </a>
           <p className="text-xs text-[#166534] leading-relaxed">
             <strong>OBS:</strong> Android kan visa en varning som säger{" "}
@@ -180,23 +183,30 @@ export default function OmPage() {
             </em>
             . Det är normalt för appar som inte laddas ned via Google Play.
             Appen är säker att installera. Du kan behöva tillåta installation
-            från okända källor i dina inställningar.
+            från okända källor i dina inställningar. Appen kommer snart även till Google Play!
           </p>
         </div>
-
+        <div className="flex flex-col gap-3 bg-[#f8f8f8] border border-[#d1d5db] rounded-2xl p-4">
+          <p className="text-sm font-bold text-[#1e293b] flex items-center gap-2">
+            <IoLogoApple className="text-lg" /> iPhone / iOS
+          </p>
+          <p className="text-xs text-[#475569] leading-relaxed">
+            Appen finns inte i App Store men du kan lägga till den på hemskärmen:
+          </p>
+          <ol className="text-xs text-[#475569] leading-relaxed flex flex-col gap-1 list-decimal list-inside pl-1">
+            <li>Öppna <strong>kladereftervader.se</strong> i Safari</li>
+            <li>Tryck på <strong>dela-knappen</strong> (rutan med pilen uppåt) längst ner i webbläsaren</li>
+            <li>Välj <strong>&ldquo;Lägg till på hemskärmen&rdquo;</strong></li>
+          </ol>
+          <p className="text-xs text-[#475569]">Då fungerar den som en app — ingen nedladdning krävs.</p>
+        </div>
         <p className="text-sm sm:text-base text-[#475569] leading-relaxed">
           Kläder efter Väder är en app som hjälper alla barn, men är speciellt
           anpassad för barn med IF, autism eller språkstörning att förstå vilket
           väder det är och vad de ska ha på sig. Bilderna nedan visar alla olika
           vädertyper som appen kan visa.
         </p>
-        <p className="text-sm sm:text-base text-[#475569] leading-relaxed">
-          Appen finns redan för Android du kan ladda ner den här åven men den
-          kommer även till Google Play inom kort. En iOS-version finns just nu
-          inte iPhone-användare kan redan nu öppna kladereftervader.se i Safari
-          och trycka på dela-knappen → "Lägg till på hemskärmen". Då fungerar
-          den som en app direkt, ingen nedladdning krävs.
-        </p>
+       
 
         <p className="text-xs text-[#64748b]">
           Skapad av Josefine Eriksson &mdash;{" "}
