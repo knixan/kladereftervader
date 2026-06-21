@@ -13,13 +13,13 @@ export default function Footer() {
         <p className="mt-2">
           <Link
             href="/om"
-            className="underline hover:text-[#1e293b] transition"
+            className="underline  hover:text-[#1e293b] transition"
           >
             Om Kläder efter Väder - Se alla kläder och iconer
           </Link>
           <Link
             href="/om"
-            className="inline-block text-center bg-[#22c55e] hover:bg-[#16a34a] active:scale-[0.99] transition text-white font-extrabold rounded-2xl py-3 px-6 shadow-md text-sm"
+            className="inline-block mt-4 text-center bg-[#22c55e] hover:bg-[#16a34a] active:scale-[0.99] transition text-white font-extrabold rounded-2xl py-3 px-6 shadow-md text-sm"
           >
             Ladda ner appen!
           </Link>
@@ -55,6 +55,11 @@ export default function Footer() {
         </p>
         <p className="mt-1 text-[11px] sm:text-xs opacity-75">
           Webbappen är under utveckling och en mobilapp planeras inom kort.
+        </p>
+        <p className="mt-1 text-[11px] sm:text-xs">
+          <Link href="/integritetspolicy" className="underline hover:text-[#1e293b] transition">
+            Integritetspolicy
+          </Link>
         </p>
       </div>
     </footer>
