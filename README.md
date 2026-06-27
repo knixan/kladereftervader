@@ -1,7 +1,7 @@
 [![Next.js](https://img.shields.io/badge/Next.js-16-blue.svg)](https://nextjs.org)
 
 # Dress for the Weather — A thoughtful weather app that provides clothing suggestions.
-
+![](public/kladereftervader-mockup.png)
 A small, friendly weather application built with Next.js and TypeScript. The app displays current weather information and provides simple, practical clothing and activity advice in a warm, casual tone — perfect for families and children. The web app is primarily aimed at children and adolescents with disabilities such as intellectual disabilities, autism, and others who have difficulty choosing clothes according to the weather.
 
 ![](public/kladereftervader.png)
